@@ -1,0 +1,12 @@
+[requires]
+sdl/2.32.10
+
+[generators]
+CMakeDeps
+CMakeToolchain
+
+[options]
+sdl/*:shared=False
+
+[layout]
+cmake_layout

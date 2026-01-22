@@ -9,7 +9,8 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -g -O0")
 set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -g -O0")
 
-find_package(SDL2 REQUIRED)
+# Conan 包管理集成
+find_package(SDL2 REQUIRED CONFIG)
 
 add_subdirectory(${CMAKE_SOURCE_DIR}/src/math)
 include_directories(${CMAKE_SOURCE_DIR}/src)
@@ -34,5 +35,5 @@ add_executable(sdl2_graphics
         src/primitive/triangle_primitive.cpp
         src/primitive/triangle_primitive.h
 )
-target_link_libraries(sdl2_graphics PRIVATE SDL2::SDL2)
+target_link_libraries(sdl2_graphics PRIVATE SDL2::SDL2-static)
 

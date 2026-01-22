@@ -41,3 +41,7 @@ conan/
 *.log
 *.tmp
 *.swp
+
+.vscode/
+
+.cache/clangd/index/
