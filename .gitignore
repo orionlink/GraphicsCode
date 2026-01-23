@@ -37,6 +37,16 @@ Thumbs.db
 vcpkg_installed/
 conan/
 
+# Conan 生成的文件
+CMakeUserPresets.json
+conan_toolchain.cmake
+conan.lock
+conanbuildinfo.*
+conaninfo.txt
+graph_info.json
+deactivate_conanbuild.*
+activate_conanbuild.*
+
 # === 日志与临时文件 ===
 *.log
 *.tmp

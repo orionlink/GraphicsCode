@@ -309,6 +309,10 @@ void TestRenderer(GraphicsRenderer &renderer)
     math::Point2i p1{150, 200};
     math::Point2i p2{350, 200};
     math::Point2i p3{250, 350};
-    pri::TrianglePrimitive triangle{p1, p2, p3, Color::Red()};
+    pri::PointPrimitive pp1{p1, Color::Red()};
+    pri::PointPrimitive pp2{p2, Color::Green()};
+    pri::PointPrimitive pp3{p3, Color::Blue()};
+    pri::TrianglePrimitive triangle{pp1, pp2, pp3};
+    // pri::TrianglePrimitive triangle{p1, p2, p3};
     renderer.Draw(triangle);
 }

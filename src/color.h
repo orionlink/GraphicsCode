@@ -70,6 +70,11 @@ public:
     uint8_t B() const { return ExtractB(_rgba); }
     uint8_t A() const { return ExtractA(_rgba); }
 
+    bool operator==(const Color &other) const
+    {
+        return _rgba == other._rgba;
+    }
+
     // 获取原始 uint32_t 值（SDL_PIXELFORMAT_RGBA8888格式）
     uint32_t ToUint32() const { return _rgba; }
 

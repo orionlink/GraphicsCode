@@ -28,6 +28,11 @@ public:
     Color GetPixel(int x, int y) const;
     void SetPixel(int x, int y, const Color &color);
 
+    void SetPixelData(const std::vector<uint32_t> &data)
+    {
+        _pixel_data = data;
+    }
+
     // 清除缓冲区（填充指定颜色）
     void Clear(const Color &color = Color::Transparent());
 
