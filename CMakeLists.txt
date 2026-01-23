@@ -6,8 +6,8 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 # 设置 Debug 模式的编译选项
-set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -g -O0")
-set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -g -O0")
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -g -O0 -w")
+set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -g -O0 -w")
 
 # Conan 包管理集成
 find_package(SDL2 REQUIRED CONFIG)
@@ -16,6 +16,7 @@ add_subdirectory(${CMAKE_SOURCE_DIR}/src/math)
 include_directories(${CMAKE_SOURCE_DIR}/src)
 include_directories(${CMAKE_SOURCE_DIR}/src/math)
 include_directories(${CMAKE_SOURCE_DIR}/src/primitive)
+include_directories(${CMAKE_SOURCE_DIR}/src/image)
 
 add_executable(sdl2_graphics
         src/main.cpp
@@ -34,6 +35,10 @@ add_executable(sdl2_graphics
         src/primitive/antialiased_line_primitive.h
         src/primitive/triangle_primitive.cpp
         src/primitive/triangle_primitive.h
+        src/primitive/image_primitive.cpp
+        src/primitive/image_primitive.h
+        src/image/image_loader.cpp
+        src/image/image_loader.h
 )
 target_link_libraries(sdl2_graphics PRIVATE SDL2::SDL2-static)
 

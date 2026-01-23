@@ -149,6 +149,10 @@ cmake .. -DCMAKE_TOOLCHAIN_FILE=conan_toolchain.cmake -DCMAKE_BUILD_TYPE=Release
 cmake .. -G "Visual Studio 17 2022" -DCMAKE_TOOLCHAIN_FILE=conan_toolchain.cmake
 ```
 
+参数说明：
+- `-DCMAKE_TOOLCHAIN_FILE`: 需要指向 conan_toolchain.cmake 的实际路径
+
+
 #### 3. 编译项目
 
 ```bash

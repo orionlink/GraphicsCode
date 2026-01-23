@@ -7,6 +7,8 @@
 
 #include <iostream>
 
+#include "image_primitive.h"
+
 using namespace math;
 using namespace std;
 
@@ -315,4 +317,8 @@ void TestRenderer(GraphicsRenderer &renderer)
     pri::TrianglePrimitive triangle{pp1, pp2, pp3};
     // pri::TrianglePrimitive triangle{p1, p2, p3};
     renderer.Draw(triangle);
+
+    pri::ImagePrimitive image("/Users/admin/Downloads/beautiful-landscape-around-lake-kawaguchiko小.jpeg");
+    image.Move(450, 400);
+    renderer.Draw(image);
 }
