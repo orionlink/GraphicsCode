@@ -147,6 +147,9 @@ cmake .. -DCMAKE_TOOLCHAIN_FILE=conan_toolchain.cmake -DCMAKE_BUILD_TYPE=Release
 **Windows**:
 ```cmd
 cmake .. -G "Visual Studio 17 2022" -DCMAKE_TOOLCHAIN_FILE=conan_toolchain.cmake
+
+# 例如
+cmake .. -G "Visual Studio 17 2022" -DCMAKE_TOOLCHAIN_FILE="D:\item\GraphicsCode\build\build\generators\conan_toolchain.cmake" -DCMAKE_PREFIX_PATH="D:\item\GraphicsCode\build\build\generators"
 ```
 
 参数说明：

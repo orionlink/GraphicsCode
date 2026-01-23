@@ -6,6 +6,7 @@
 #include "primitive/line_primitive.h"
 
 #include <iostream>
+#include <cstdlib>
 
 #include "image_primitive.h"
 
@@ -25,8 +26,10 @@ void TestVector();
 const int g_width = 800;
 const int g_height = 600;
 
-int main()
+int main(int argc, char* argv[])
 {
+    (void)argc;  // 避免未使用参数警告
+    (void)argv;
 
     Sdl2Window window("OpenGL 学习", g_width, g_height);
     auto &renderer = window.graphicsRenderer();
@@ -289,9 +292,9 @@ void TestRenderer(GraphicsRenderer &renderer)
         int y = r * sin(radian) + c.Y(); // 圆上的 y 坐标
         pri::PointPrimitive pt{
             x, y,
-            Color{static_cast<unsigned char>(random() % 255),
-                  static_cast<unsigned char>(random() % 255),
-                  static_cast<unsigned char>(random() % 255), 255}};
+            Color{static_cast<unsigned char>(rand() % 255),
+                  static_cast<unsigned char>(rand() % 255),
+                  static_cast<unsigned char>(rand() % 255), 255}};
         // renderer.DrawLine(c, pt); // 从圆心画线到圆周
         BresenhamLine(c, pt, renderer);
         // renderer.DrawAntialiasedLine(c, pt);
@@ -318,7 +321,7 @@ void TestRenderer(GraphicsRenderer &renderer)
     // pri::TrianglePrimitive triangle{p1, p2, p3};
     renderer.Draw(triangle);
 
-    pri::ImagePrimitive image("/Users/admin/Downloads/beautiful-landscape-around-lake-kawaguchiko小.jpeg");
-    image.Move(450, 400);
-    renderer.Draw(image);
+    // pri::ImagePrimitive image("/Users/admin/Downloads/beautiful-landscape-around-lake-kawaguchiko小.jpeg");
+    // image.Move(450, 400);
+    // renderer.Draw(image);
 }

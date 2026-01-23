@@ -6,6 +6,8 @@
 #define IMAGEPRIMITIVE_H
 
 #include "primitive.h"
+#include <string>
+#include <vector>
 
 namespace pri {
 
