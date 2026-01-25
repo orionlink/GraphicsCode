@@ -310,23 +310,26 @@ void TestRenderer(GraphicsRenderer &renderer)
     renderer.DrawAntialiasedLine(550, 170, 650, 270, Color::Green());
     renderer.DrawAntialiasedLine(550, 290, 650, 390, Color::Blue());
 
-    math::Point2i p1{150, 200};
-    math::Point2i p2{350, 200};
-    math::Point2i p3{250, 350};
+    math::Point2i p1{350, 100};
+    math::Point2i p2{450, 100};
+    math::Point2i p3{400, 10};
     pri::PointPrimitive pp1{p1, Color::Red()};
     pri::PointPrimitive pp2{p2, Color::Green()};
     pri::PointPrimitive pp3{p3, Color::Blue()};
     // pri::TrianglePrimitive triangle{p1, p2, p3}; // 纯颜色
     pri::TrianglePrimitive triangle{pp1, pp2, pp3}; // 颜色插值
-    auto image = std::make_shared<image::Image>("/Users/admin/Downloads/beautiful-landscape-around-lake-kawaguchiko小.jpeg");
+    auto image =
+        std::make_shared<image::Image>("/Users/admin/Downloads/goku.jpg");
     image->Move(math::Point2i(450, 350));
 
     auto texture = std::make_shared<texture::Texture>(image);
     texture->SetSampleMode(texture::SampleMode::Bilinear);
 
     // 三角形设置纹理
-    triangle.SetTexture(texture, math::Point2f(0.0f, 0.0f),
-                        math::Point2f(1.0f, 0.0f), math::Point2f(0.5f, 1.0f));
+    triangle.SetTexture(texture, math::Point2f(0.0f, 1.0f), // p1 -> 左下角
+                        math::Point2f(1.0f, 1.0f),          // p2 -> 右下角
+                        math::Point2f(0.5f, 0.0f)           // p3 -> 上中间
+    );
     renderer.Draw(triangle);
 
     renderer.DrawImage(image);
