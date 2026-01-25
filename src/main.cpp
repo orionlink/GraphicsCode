@@ -320,6 +320,13 @@ void TestRenderer(GraphicsRenderer &renderer)
     pri::TrianglePrimitive triangle{pp1, pp2, pp3}; // 颜色插值
     auto image = std::make_shared<image::Image>("/Users/admin/Downloads/beautiful-landscape-around-lake-kawaguchiko小.jpeg");
     image->Move(math::Point2i(450, 350));
+
+    auto texture = std::make_shared<texture::Texture>(image);
+    texture->SetSampleMode(texture::SampleMode::Bilinear);
+
+    // 三角形设置纹理
+    triangle.SetTexture(texture, math::Point2f(0.0f, 0.0f),
+                        math::Point2f(1.0f, 0.0f), math::Point2f(0.5f, 1.0f));
     renderer.Draw(triangle);
 
     renderer.DrawImage(image);

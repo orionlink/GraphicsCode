@@ -23,6 +23,7 @@ include_directories(${CMAKE_SOURCE_DIR}/src)
 include_directories(${CMAKE_SOURCE_DIR}/src/math)
 include_directories(${CMAKE_SOURCE_DIR}/src/primitive)
 include_directories(${CMAKE_SOURCE_DIR}/src/image)
+include_directories(${CMAKE_SOURCE_DIR}/src/texture)
 
 add_executable(sdl2_graphics
         src/main.cpp
@@ -45,6 +46,8 @@ add_executable(sdl2_graphics
         src/image/image_loader.h
         src/image/image.cpp
         src/image/image.h
+        src/texture/texture.cpp
+        src/texture/texture.h
 )
 # Windows 需要链接 SDL2main 来提供正确的入口点
 if(WIN32)
