@@ -121,6 +121,24 @@ void GraphicsRenderer::DrawAntialiasedLine(const math::Line2f &line, const Color
     DrawAntialiasedLine(line.Start(), line.End(), color);
 }
 
+void GraphicsRenderer::DrawImage(std::shared_ptr<image::Image> image)
+{
+    if (!image) return;
+    int offset_y = image->Position().Y();
+    int offset_x = image->Position().X();
+    int limit_y = image->Height() + offset_y;
+    int limit_x = image->Width() + offset_x;
+
+    for (int j = offset_y; j < limit_y; j++)
+    {
+        for (int i = offset_x; i < limit_x; i++)
+        {
+            const Color color = image->GetPixel(i - offset_x, j - offset_y);
+            _buffer.SetPixel(i, j, color);
+        }
+    }
+}
+
 void GraphicsRenderer::AddPrimitive(std::unique_ptr<pri::IPrimitive> primitive)
 {
     _primitives.push_back(std::move(primitive));

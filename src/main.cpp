@@ -1,14 +1,14 @@
 #include "bounding_box.h"
-#include "sdl2_window.h"
 #include "color.h"
-#include "triangle_primitive.h"
+#include "image.h"
 #include "math/vector.h"
 #include "primitive/line_primitive.h"
+#include "sdl2_window.h"
+#include "triangle_primitive.h"
 
-#include <iostream>
 #include <cstdlib>
-
-#include "image_primitive.h"
+#include <iostream>
+#include <memory>
 
 using namespace math;
 using namespace std;
@@ -26,9 +26,9 @@ void TestVector();
 const int g_width = 800;
 const int g_height = 600;
 
-int main(int argc, char* argv[])
+int main(int argc, char *argv[])
 {
-    (void)argc;  // 避免未使用参数警告
+    (void)argc; // 避免未使用参数警告
     (void)argv;
 
     Sdl2Window window("OpenGL 学习", g_width, g_height);
@@ -181,17 +181,16 @@ void BresenhamLine(const pri::PointPrimitive point1,
         float t = 0.0f;
         if (point1.X() != point2.X())
         {
-            t = static_cast<float>((result_point.X() - point1.X())) / (
-                    static_cast<float>(point2.X() - point1.X()));
+            t = static_cast<float>((result_point.X() - point1.X())) /
+                (static_cast<float>(point2.X() - point1.X()));
         }
         else if (point1.Y() != point2.Y())
         {
-            t = static_cast<float>((result_point.Y() - point1.Y())) / (
-                    static_cast<float>(point2.Y() - point1.Y()));
+            t = static_cast<float>((result_point.Y() - point1.Y())) /
+                (static_cast<float>(point2.Y() - point1.Y()));
         }
 
-        Color color = Color::Lerp(point1.GetColor(), point2.GetColor(),
-                                  t);
+        Color color = Color::Lerp(point1.GetColor(), point2.GetColor(), t);
         result_point.SetColor(color);
 
         renderer.DrawPoint(result_point);
@@ -287,14 +286,14 @@ void TestRenderer(GraphicsRenderer &renderer)
     // 只要角度 θ 相同，不管三角形多大，这个比例永远不变！
     for (float i = 0; i < 360; i += 10) // 从 0° 到 360°，每隔 10°
     {
-        float radian = DEG2RAD(i); // 转成弧度
+        float radian = DEG2RAD(i);       // 转成弧度
         int x = r * cos(radian) + c.X(); // 圆上的 x 坐标
         int y = r * sin(radian) + c.Y(); // 圆上的 y 坐标
-        pri::PointPrimitive pt{
-            x, y,
-            Color{static_cast<unsigned char>(rand() % 255),
-                  static_cast<unsigned char>(rand() % 255),
-                  static_cast<unsigned char>(rand() % 255), 255}};
+        pri::PointPrimitive pt{x, y,
+                               Color{static_cast<unsigned char>(rand() % 255),
+                                     static_cast<unsigned char>(rand() % 255),
+                                     static_cast<unsigned char>(rand() % 255),
+                                     255}};
         // renderer.DrawLine(c, pt); // 从圆心画线到圆周
         BresenhamLine(c, pt, renderer);
         // renderer.DrawAntialiasedLine(c, pt);
@@ -317,11 +316,11 @@ void TestRenderer(GraphicsRenderer &renderer)
     pri::PointPrimitive pp1{p1, Color::Red()};
     pri::PointPrimitive pp2{p2, Color::Green()};
     pri::PointPrimitive pp3{p3, Color::Blue()};
-    pri::TrianglePrimitive triangle{pp1, pp2, pp3};
-    // pri::TrianglePrimitive triangle{p1, p2, p3};
+    // pri::TrianglePrimitive triangle{p1, p2, p3}; // 纯颜色
+    pri::TrianglePrimitive triangle{pp1, pp2, pp3}; // 颜色插值
+    auto image = std::make_shared<image::Image>("/Users/admin/Downloads/beautiful-landscape-around-lake-kawaguchiko小.jpeg");
+    image->Move(math::Point2i(450, 350));
     renderer.Draw(triangle);
 
-    // pri::ImagePrimitive image("/Users/admin/Downloads/beautiful-landscape-around-lake-kawaguchiko小.jpeg");
-    // image.Move(450, 400);
-    // renderer.Draw(image);
+    renderer.DrawImage(image);
 }

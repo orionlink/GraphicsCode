@@ -41,10 +41,10 @@ add_executable(sdl2_graphics
         src/primitive/antialiased_line_primitive.h
         src/primitive/triangle_primitive.cpp
         src/primitive/triangle_primitive.h
-        src/primitive/image_primitive.cpp
-        src/primitive/image_primitive.h
         src/image/image_loader.cpp
         src/image/image_loader.h
+        src/image/image.cpp
+        src/image/image.h
 )
 # Windows 需要链接 SDL2main 来提供正确的入口点
 if(WIN32)

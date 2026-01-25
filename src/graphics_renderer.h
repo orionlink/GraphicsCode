@@ -11,6 +11,7 @@
 #include "math/point.h"
 #include "math/line.h"
 #include "color.h"
+#include "image/image.h"
 #include <vector>
 #include <memory>
 
@@ -48,6 +49,8 @@ public:
     void DrawAntialiasedLine(const math::Point2f &start, const math::Point2f &end, const Color &color);
     void DrawAntialiasedLine(const math::Line2i &line, const Color &color);
     void DrawAntialiasedLine(const math::Line2f &line, const Color &color);
+
+    void DrawImage(std::shared_ptr<image::Image> image);
 
     // 图元管理
     void AddPrimitive(std::unique_ptr<pri::IPrimitive> primitive);
