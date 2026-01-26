@@ -311,9 +311,9 @@ void TestRenderer(GraphicsRenderer &renderer)
     renderer.DrawAntialiasedLine(550, 170, 650, 270, Color::Green());
     renderer.DrawAntialiasedLine(550, 290, 650, 390, Color::Blue());
 
-    math::Point2i p1{350, 100};
-    math::Point2i p2{450, 100};
-    math::Point2i p3{400, 10};
+    math::Point2i p1{400, 500};
+    math::Point2i p2{800, 500};
+    math::Point2i p3{600, 10};
     pri::PointPrimitive pp1{p1, Color::Red()};
     pri::PointPrimitive pp2{p2, Color::Green()};
     pri::PointPrimitive pp3{p3, Color::Blue()};
@@ -332,7 +332,7 @@ void TestRenderer(GraphicsRenderer &renderer)
     image->Move(math::Point2i(450, 350));
 
     auto texture = std::make_shared<texture::Texture>(image);
-    texture->SetSampleMode(texture::SampleMode::Bilinear);
+    texture->SetSampleMode(texture::SampleMode::Nearest);
 
     // 三角形设置纹理
     triangle.SetTexture(texture, math::Point2f(0.0f, 1.0f), // p1 -> 左下角
@@ -341,5 +341,13 @@ void TestRenderer(GraphicsRenderer &renderer)
     );
     renderer.Draw(triangle);
 
-    renderer.DrawImage(image);
+    pri::TrianglePrimitive triangle2{{0, 500}, {400, 500}, {200, 10}};
+    texture->SetSampleMode(texture::SampleMode::Bilinear);
+    triangle2.SetTexture(texture, math::Point2f(0.0f, 1.0f), // p1 -> 左下角
+                        math::Point2f(1.0f, 1.0f),          // p2 -> 右下角
+                        math::Point2f(0.5f, 0.0f)           // p3 -> 上中间
+    );
+    renderer.Draw(triangle2);
+
+    // renderer.DrawImage(image);
 }
