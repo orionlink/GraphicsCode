@@ -25,6 +25,8 @@ include_directories(${CMAKE_SOURCE_DIR}/src/primitive)
 include_directories(${CMAKE_SOURCE_DIR}/src/image)
 include_directories(${CMAKE_SOURCE_DIR}/src/texture)
 
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/build/bin/)
+
 add_executable(sdl2_graphics
         src/main.cpp
         src/sdl2_window.cpp
