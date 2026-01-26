@@ -9,6 +9,7 @@
 #include <cstdlib>
 #include <iostream>
 #include <memory>
+#include <filesystem>
 
 using namespace math;
 using namespace std;
@@ -318,8 +319,16 @@ void TestRenderer(GraphicsRenderer &renderer)
     pri::PointPrimitive pp3{p3, Color::Blue()};
     // pri::TrianglePrimitive triangle{p1, p2, p3}; // 纯颜色
     pri::TrianglePrimitive triangle{pp1, pp2, pp3}; // 颜色插值
+    // 获取当前工作目录
+    std::string current_dir = std::filesystem::current_path().string();
+    // 资源路径跨平台处理
+#if defined(_WIN32) || defined(__WIN32__)
+        std::string image_path = current_dir + "\\resource\\images\\goku.jpg";
+#else
+        std::string image_path = current_dir + "/resource/images/goku.jpg";
+#endif
     auto image =
-        std::make_shared<image::Image>("/Users/admin/Downloads/goku.jpg");
+        std::make_shared<image::Image>(image_path);
     image->Move(math::Point2i(450, 350));
 
     auto texture = std::make_shared<texture::Texture>(image);
