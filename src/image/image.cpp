@@ -11,11 +11,15 @@ namespace image {
 Image::Image(const std::string& file_path, int desired_channels)
     : _width(0), _height(0), _channels(0)
 {
-    ImageLoader::ImageData image_data = ImageLoader::Load(file_path, desired_channels);
-    _width = image_data.width;
-    _height = image_data.height;
-    _channels = image_data.channels;
-    _pixels = std::move(image_data.pixels);
+    try {
+        ImageLoader::ImageData image_data = ImageLoader::Load(file_path, desired_channels);
+        _width = image_data.width;
+        _height = image_data.height;
+        _channels = image_data.channels;
+        _pixels = std::move(image_data.pixels);
+    } catch (const std::runtime_error& e) {
+        std::cerr << e.what() << std::endl;
+    }
 }
 
 Image::Image(std::vector<uint32_t>&& pixels, int width, int height, int channels)
