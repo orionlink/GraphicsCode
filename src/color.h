@@ -44,7 +44,7 @@ public:
     }
 
     /**
-     * @brief 线性插值函数
+     * @brief 线性插值函数(t与end正相关)
      * @param start 起点颜色
      * @param end 终点颜色
      * @param t 插值参数

@@ -25,7 +25,11 @@ include_directories(${CMAKE_SOURCE_DIR}/src/primitive)
 include_directories(${CMAKE_SOURCE_DIR}/src/image)
 include_directories(${CMAKE_SOURCE_DIR}/src/texture)
 
+# 设置输出目录，所有配置都输出到同一个目录
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/build/bin/)
+# Visual Studio 生成器需要明确设置每个配置的输出目录，都指向同一个目录
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG ${CMAKE_SOURCE_DIR}/build/bin/)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${CMAKE_SOURCE_DIR}/build/bin/)
 
 add_executable(sdl2_graphics
         src/main.cpp
@@ -40,8 +44,6 @@ add_executable(sdl2_graphics
         src/primitive/point_primitive.h
         src/primitive/line_primitive.cpp
         src/primitive/line_primitive.h
-        src/primitive/antialiased_line_primitive.cpp
-        src/primitive/antialiased_line_primitive.h
         src/primitive/triangle_primitive.cpp
         src/primitive/triangle_primitive.h
         src/image/image_loader.cpp

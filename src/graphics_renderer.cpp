@@ -3,7 +3,6 @@
 //
 
 #include "graphics_renderer.h"
-#include "primitive/antialiased_line_primitive.h"
 #include "color.h"
 #include "primitive/line_primitive.h"
 #include <cmath>
@@ -52,15 +51,15 @@ void GraphicsRenderer::DrawLine(const pri::PointPrimitive &start,
 void GraphicsRenderer::DrawAntialiasedLine(int x1, int y1, int x2, int y2,
                                            const Color &color)
 {
-    // 使用 AntialiasedLinePrimitive 来绘制抗锯齿直线
-    pri::AntialiasedLinePrimitive line(x1, y1, x2, y2, color);
+    // 使用 LinePrimitive 并启用抗锯齿来绘制直线
+    pri::LinePrimitive line(x1, y1, x2, y2, color, true);
     line.Draw(_buffer);
 }
 
 void GraphicsRenderer::DrawAntialiasedLine(const pri::PointPrimitive &start,
                                            const pri::PointPrimitive &end)
 {
-    pri::AntialiasedLinePrimitive line(start, end);
+    pri::LinePrimitive line(start, end, true);
     line.Draw(_buffer);
 }
 

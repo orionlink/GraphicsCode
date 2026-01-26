@@ -51,11 +51,22 @@ public:
     /**
      * @brief 将图片移动到屏幕的某个位置
      * 
-     * @param position 
+     * @param position 位置
      */
     void Move(const math::Point2i& position)
     {
         _start_position = position;
+    }
+
+    /**
+     * @brief 将图片移动到屏幕的某个位置
+     * 
+     * @param x 横坐标
+     * @param y 纵坐标
+     */
+    void Move(const int x, const int y)
+    {
+        _start_position = math::Point2i(x, y);
     }
 
     math::Point2i Position() const
