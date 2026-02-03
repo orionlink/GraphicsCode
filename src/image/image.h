@@ -55,7 +55,10 @@ class Image
      *
      * @param position 位置
      */
-    void Move(const math::Point2i& position) { _start_position = position; }
+    void Move(const math::Point2i& position)
+    {
+        _start_position = position;
+    }
 
     /**
      * @brief 将图片移动到屏幕的某个位置
@@ -63,9 +66,15 @@ class Image
      * @param x 横坐标
      * @param y 纵坐标
      */
-    void Move(const int x, const int y) { _start_position = math::Point2i(x, y); }
+    void Move(const int x, const int y)
+    {
+        _start_position = math::Point2i(x, y);
+    }
 
-    math::Point2i Position() const { return _start_position; }
+    math::Point2i Position() const
+    {
+        return _start_position;
+    }
 
     /**
      * @brief 获取指定位置的像素颜色
@@ -86,32 +95,50 @@ class Image
     /**
      * @brief 获取图像宽度
      */
-    [[nodiscard]] int Width() const { return _width; }
+    [[nodiscard]] int Width() const
+    {
+        return _width;
+    }
 
     /**
      * @brief 获取图像高度
      */
-    [[nodiscard]] int Height() const { return _height; }
+    [[nodiscard]] int Height() const
+    {
+        return _height;
+    }
 
     /**
      * @brief 获取通道数
      */
-    [[nodiscard]] int Channels() const { return _channels; }
+    [[nodiscard]] int Channels() const
+    {
+        return _channels;
+    }
 
     /**
      * @brief 检查图像是否有效
      */
-    [[nodiscard]] bool IsValid() const { return !_pixels.empty(); }
+    [[nodiscard]] bool IsValid() const
+    {
+        return !_pixels.empty();
+    }
 
     /**
      * @brief 获取原始像素数据（只读）
      */
-    [[nodiscard]] const std::vector<uint32_t>& Pixels() const { return _pixels; }
+    [[nodiscard]] const std::vector<uint32_t>& Pixels() const
+    {
+        return _pixels;
+    }
 
     /**
      * @brief 获取原始像素数据（可修改）
      */
-    [[nodiscard]] std::vector<uint32_t>& Pixels() { return _pixels; }
+    [[nodiscard]] std::vector<uint32_t>& Pixels()
+    {
+        return _pixels;
+    }
 
   private:
     std::vector<uint32_t> _pixels;

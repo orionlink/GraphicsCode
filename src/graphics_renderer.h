@@ -55,8 +55,14 @@ class GraphicsRenderer
     void DrawAllPrimitives();
 
     // 获取关联的像素缓冲区
-    PixelsBuffer& Buffer() { return _buffer; }
-    const PixelsBuffer& Buffer() const { return _buffer; }
+    PixelsBuffer& Buffer()
+    {
+        return _buffer;
+    }
+    const PixelsBuffer& Buffer() const
+    {
+        return _buffer;
+    }
 
   private:
     PixelsBuffer& _buffer;

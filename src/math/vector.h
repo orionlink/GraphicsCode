@@ -145,7 +145,10 @@ template <class T> class Vector2
      * @param v 要相加的向量
      * @return 相加后的新向量
      */
-    Vector2 operator+(const Vector2& v) const { return Vector2(_x + v._x, _y + v._y); }
+    Vector2 operator+(const Vector2& v) const
+    {
+        return Vector2(_x + v._x, _y + v._y);
+    }
 
     /**
      * @brief 向量加法赋值
@@ -164,7 +167,10 @@ template <class T> class Vector2
      * @param s 标量值
      * @return 相乘后的新向量
      */
-    Vector2 operator*(const T s) const { return Vector2(_x * s, _y * s); }
+    Vector2 operator*(const T s) const
+    {
+        return Vector2(_x * s, _y * s);
+    }
 
     /**
      * @brief 标量乘法赋值
@@ -212,14 +218,20 @@ template <class T> class Vector2
      * @brief 向量取反（负号运算符）
      * @return 取反后的新向量
      */
-    Vector2 operator-() { return Vector2(-_x, -_y); }
+    Vector2 operator-()
+    {
+        return Vector2(-_x, -_y);
+    }
 
     /**
      * @brief 向量减法
      * @param v 要相减的向量
      * @return 相减后的新向量
      */
-    Vector2 operator-(const Vector2& v) const { return Vector2(_x - v._x, _y - v._y); }
+    Vector2 operator-(const Vector2& v) const
+    {
+        return Vector2(_x - v._x, _y - v._y);
+    }
 
     /**
      * @brief 向量减法赋值
@@ -238,7 +250,10 @@ template <class T> class Vector2
      * @param v 要相乘的向量
      * @return 逐元素相乘后的新向量
      */
-    Vector2 operator*(const Vector2& v) const { return Vector2(_x * v._x, _y * v._y); }
+    Vector2 operator*(const Vector2& v) const
+    {
+        return Vector2(_x * v._x, _y * v._y);
+    }
 
     /**
      * @brief 向量逐元素乘法赋值
@@ -257,26 +272,38 @@ template <class T> class Vector2
      * @param v 另一个向量
      * @return 点积结果
      */
-    T Dot(const Vector2& v) const { return _x * v._x + _y * v._y; }
+    T Dot(const Vector2& v) const
+    {
+        return _x * v._x + _y * v._y;
+    }
 
     /**
      * @brief 计算向量的叉积（外积）
      * @param v 另一个向量
      * @return 叉积结果标量
      */
-    T Cross(const Vector2& v) const { return _x * v._y - _y * v._x; }
+    T Cross(const Vector2& v) const
+    {
+        return _x * v._y - _y * v._x;
+    }
 
     /**
      * @brief 计算向量长度的平方
      * @return 向量长度的平方
      */
-    T LengthSquared() const { return _x * _x + _y * _y; }
+    T LengthSquared() const
+    {
+        return _x * _x + _y * _y;
+    }
 
     /**
      * @brief 计算向量的长度（模）
      * @return 向量的长度
      */
-    T Length() const { return std::sqrt(LengthSquared()); }
+    T Length() const
+    {
+        return std::sqrt(LengthSquared());
+    }
 
     /**
      * @brief 返回归一化后的新向量（单位向量）
@@ -312,15 +339,27 @@ template <class T> class Vector2
      * @brief 计算向量的绝对值（各分量取绝对值）
      * @return 各分量取绝对值后的新向量
      */
-    Vector2 Abs() const { return Vector2(std::abs(_x), std::abs(_y)); }
+    Vector2 Abs() const
+    {
+        return Vector2(std::abs(_x), std::abs(_y));
+    }
 
-    T X() const { return _x; }
-    T Y() const { return _y; }
+    T X() const
+    {
+        return _x;
+    }
+    T Y() const
+    {
+        return _y;
+    }
 
     /**
      * @brief 输出向量信息
      */
-    void Print() { std::cout << "x: " << _x << ", y: " << _y << std::endl; }
+    void Print()
+    {
+        std::cout << "x: " << _x << ", y: " << _y << std::endl;
+    }
 
     /**
      * @brief 输出向量信息到字符串
@@ -462,7 +501,10 @@ template <class T> class Vector3
      * @param v 要相加的向量
      * @return 相加后的新向量
      */
-    Vector3 operator+(const Vector3& v) const { return Vector3(_x + v._x, _y + v._y, _z + v._z); }
+    Vector3 operator+(const Vector3& v) const
+    {
+        return Vector3(_x + v._x, _y + v._y, _z + v._z);
+    }
 
     /**
      * @brief 向量加法赋值
@@ -482,7 +524,10 @@ template <class T> class Vector3
      * @param s 标量值
      * @return 相乘后的新向量
      */
-    Vector3 operator*(const T s) const { return Vector3(_x * s, _y * s, _z * s); }
+    Vector3 operator*(const T s) const
+    {
+        return Vector3(_x * s, _y * s, _z * s);
+    }
 
     /**
      * @brief 标量乘法赋值
@@ -532,14 +577,20 @@ template <class T> class Vector3
      * @brief 向量取反（负号运算符）
      * @return 取反后的新向量
      */
-    Vector3 operator-() { return Vector3(-_x, -_y, -_z); }
+    Vector3 operator-()
+    {
+        return Vector3(-_x, -_y, -_z);
+    }
 
     /**
      * @brief 向量减法
      * @param v 要相减的向量
      * @return 相减后的新向量
      */
-    Vector3 operator-(const Vector3& v) const { return Vector3(_x - v._x, _y - v._y, _z - v._z); }
+    Vector3 operator-(const Vector3& v) const
+    {
+        return Vector3(_x - v._x, _y - v._y, _z - v._z);
+    }
 
     /**
      * @brief 向量减法赋值
@@ -559,7 +610,10 @@ template <class T> class Vector3
      * @param v 要相乘的向量
      * @return 逐元素相乘后的新向量
      */
-    Vector3 operator*(const Vector3& v) const { return Vector3(_x * v._x, _y * v._y, _z * v._z); }
+    Vector3 operator*(const Vector3& v) const
+    {
+        return Vector3(_x * v._x, _y * v._y, _z * v._z);
+    }
 
     /**
      * @brief 向量逐元素乘法赋值
@@ -579,7 +633,10 @@ template <class T> class Vector3
      * @param v 另一个向量
      * @return 点积结果
      */
-    T Dot(const Vector3& v) const { return _x * v._x + _y * v._y + _z * v._z; }
+    T Dot(const Vector3& v) const
+    {
+        return _x * v._x + _y * v._y + _z * v._z;
+    }
 
     /**
      * @brief 计算向量的叉积（外积）
@@ -595,13 +652,19 @@ template <class T> class Vector3
      * @brief 计算向量长度的平方
      * @return 向量长度的平方
      */
-    T LengthSquared() const { return _x * _x + _y * _y + _z * _z; }
+    T LengthSquared() const
+    {
+        return _x * _x + _y * _y + _z * _z;
+    }
 
     /**
      * @brief 计算向量的长度（模）
      * @return 向量的长度
      */
-    T Length() const { return std::sqrt(LengthSquared()); }
+    T Length() const
+    {
+        return std::sqrt(LengthSquared());
+    }
 
     /**
      * @brief 返回归一化后的新向量（单位向量）
@@ -638,16 +701,31 @@ template <class T> class Vector3
      * @brief 计算向量的绝对值（各分量取绝对值）
      * @return 各分量取绝对值后的新向量
      */
-    Vector3 Abs() const { return Vector3(std::abs(_x), std::abs(_y), std::abs(_z)); }
+    Vector3 Abs() const
+    {
+        return Vector3(std::abs(_x), std::abs(_y), std::abs(_z));
+    }
 
-    T X() const { return _x; }
-    T Y() const { return _y; }
-    T Z() const { return _z; }
+    T X() const
+    {
+        return _x;
+    }
+    T Y() const
+    {
+        return _y;
+    }
+    T Z() const
+    {
+        return _z;
+    }
 
     /**
      * @brief 输出向量信息
      */
-    void Print() { std::cout << "x: " << _x << ", y: " << _y << ", z: " << _z << std::endl; }
+    void Print()
+    {
+        std::cout << "x: " << _x << ", y: " << _y << ", z: " << _z << std::endl;
+    }
 
     /**
      * @brief 输出向量信息到字符串
@@ -797,7 +875,10 @@ template <class T> class Vector4
      * @param v 要相加的向量
      * @return 相加后的新向量
      */
-    Vector4 operator+(const Vector4& v) const { return Vector4(_x + v._x, _y + v._y, _z + v._z, _w + v._w); }
+    Vector4 operator+(const Vector4& v) const
+    {
+        return Vector4(_x + v._x, _y + v._y, _z + v._z, _w + v._w);
+    }
 
     /**
      * @brief 向量加法赋值
@@ -818,7 +899,10 @@ template <class T> class Vector4
      * @param s 标量值
      * @return 相乘后的新向量
      */
-    Vector4 operator*(const T s) const { return Vector4(_x * s, _y * s, _z * s, _w * s); }
+    Vector4 operator*(const T s) const
+    {
+        return Vector4(_x * s, _y * s, _z * s, _w * s);
+    }
 
     /**
      * @brief 标量乘法赋值
@@ -870,14 +954,20 @@ template <class T> class Vector4
      * @brief 向量取反（负号运算符）
      * @return 取反后的新向量
      */
-    Vector4 operator-() { return Vector4(-_x, -_y, -_z, -_w); }
+    Vector4 operator-()
+    {
+        return Vector4(-_x, -_y, -_z, -_w);
+    }
 
     /**
      * @brief 向量减法
      * @param v 要相减的向量
      * @return 相减后的新向量
      */
-    Vector4 operator-(const Vector4& v) const { return Vector4(_x - v._x, _y - v._y, _z - v._z, _w - v._w); }
+    Vector4 operator-(const Vector4& v) const
+    {
+        return Vector4(_x - v._x, _y - v._y, _z - v._z, _w - v._w);
+    }
 
     /**
      * @brief 向量减法赋值
@@ -898,7 +988,10 @@ template <class T> class Vector4
      * @param v 要相乘的向量
      * @return 逐元素相乘后的新向量
      */
-    Vector4 operator*(const Vector4& v) const { return Vector4(_x * v._x, _y * v._y, _z * v._z, _w * v._w); }
+    Vector4 operator*(const Vector4& v) const
+    {
+        return Vector4(_x * v._x, _y * v._y, _z * v._z, _w * v._w);
+    }
 
     /**
      * @brief 向量逐元素乘法赋值
@@ -919,19 +1012,28 @@ template <class T> class Vector4
      * @param v 另一个向量
      * @return 点积结果
      */
-    T Dot(const Vector4& v) const { return _x * v._x + _y * v._y + _z * v._z + _w * v._w; }
+    T Dot(const Vector4& v) const
+    {
+        return _x * v._x + _y * v._y + _z * v._z + _w * v._w;
+    }
 
     /**
      * @brief 计算向量长度的平方
      * @return 向量长度的平方
      */
-    T LengthSquared() const { return _x * _x + _y * _y + _z * _z + _w * _w; }
+    T LengthSquared() const
+    {
+        return _x * _x + _y * _y + _z * _z + _w * _w;
+    }
 
     /**
      * @brief 计算向量的长度（模）
      * @return 向量的长度
      */
-    T Length() const { return std::sqrt(LengthSquared()); }
+    T Length() const
+    {
+        return std::sqrt(LengthSquared());
+    }
 
     /**
      * @brief 返回归一化后的新向量（单位向量）
@@ -969,17 +1071,35 @@ template <class T> class Vector4
      * @brief 计算向量的绝对值（各分量取绝对值）
      * @return 各分量取绝对值后的新向量
      */
-    Vector4 Abs() const { return Vector4(std::abs(_x), std::abs(_y), std::abs(_z), std::abs(_w)); }
+    Vector4 Abs() const
+    {
+        return Vector4(std::abs(_x), std::abs(_y), std::abs(_z), std::abs(_w));
+    }
 
-    T X() const { return _x; }
-    T Y() const { return _y; }
-    T Z() const { return _z; }
-    T W() const { return _w; }
+    T X() const
+    {
+        return _x;
+    }
+    T Y() const
+    {
+        return _y;
+    }
+    T Z() const
+    {
+        return _z;
+    }
+    T W() const
+    {
+        return _w;
+    }
 
     /**
      * @brief 输出向量信息
      */
-    void Print() { std::cout << "x: " << _x << ", y: " << _y << ", z: " << _z << ", w: " << _w << std::endl; }
+    void Print()
+    {
+        std::cout << "x: " << _x << ", y: " << _y << ", z: " << _z << ", w: " << _w << std::endl;
+    }
 
     /**
      * @brief 输出向量信息到字符串
@@ -1005,7 +1125,10 @@ template <class T> class Vector4
  * @param v 向量
  * @return 相乘后的新向量
  */
-template <class T> Vector2<T> operator*(const T s, const Vector2<T>& v) { return v * s; }
+template <class T> Vector2<T> operator*(const T s, const Vector2<T>& v)
+{
+    return v * s;
+}
 
 /**
  * @brief 标量与三维向量相乘（标量在左）
@@ -1014,7 +1137,10 @@ template <class T> Vector2<T> operator*(const T s, const Vector2<T>& v) { return
  * @param v 向量
  * @return 相乘后的新向量
  */
-template <class T> Vector3<T> operator*(const T s, const Vector3<T>& v) { return v * s; }
+template <class T> Vector3<T> operator*(const T s, const Vector3<T>& v)
+{
+    return v * s;
+}
 
 /**
  * @brief 标量与四维向量相乘（标量在左）
@@ -1023,7 +1149,10 @@ template <class T> Vector3<T> operator*(const T s, const Vector3<T>& v) { return
  * @param v 向量
  * @return 相乘后的新向量
  */
-template <class T> Vector4<T> operator*(const T s, const Vector4<T>& v) { return v * s; }
+template <class T> Vector4<T> operator*(const T s, const Vector4<T>& v)
+{
+    return v * s;
+}
 
 } // namespace math
 

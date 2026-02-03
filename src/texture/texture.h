@@ -71,43 +71,67 @@ class Texture
      * @brief 设置采样模式
      * @param mode 采样模式
      */
-    void SetSampleMode(SampleMode mode) { _sample_mode = mode; }
+    void SetSampleMode(SampleMode mode)
+    {
+        _sample_mode = mode;
+    }
 
     /**
      * @brief 获取采样模式
      */
-    [[nodiscard]] SampleMode GetSampleMode() const { return _sample_mode; }
+    [[nodiscard]] SampleMode GetSampleMode() const
+    {
+        return _sample_mode;
+    }
 
     /**
      * @brief 设置环绕模式
      * @param mode 环绕模式
      */
-    void SetWrapMode(WrapMode mode) { _wrap_mode = mode; }
+    void SetWrapMode(WrapMode mode)
+    {
+        _wrap_mode = mode;
+    }
 
     /**
      * @brief 获取环绕模式
      */
-    [[nodiscard]] WrapMode GetWrapMode() const { return _wrap_mode; }
+    [[nodiscard]] WrapMode GetWrapMode() const
+    {
+        return _wrap_mode;
+    }
 
     /**
      * @brief 获取底层图像对象
      */
-    [[nodiscard]] std::shared_ptr<image::Image> GetImage() const { return _image; }
+    [[nodiscard]] std::shared_ptr<image::Image> GetImage() const
+    {
+        return _image;
+    }
 
     /**
      * @brief 获取纹理宽度
      */
-    [[nodiscard]] int Width() const { return _image ? _image->Width() : 0; }
+    [[nodiscard]] int Width() const
+    {
+        return _image ? _image->Width() : 0;
+    }
 
     /**
      * @brief 获取纹理高度
      */
-    [[nodiscard]] int Height() const { return _image ? _image->Height() : 0; }
+    [[nodiscard]] int Height() const
+    {
+        return _image ? _image->Height() : 0;
+    }
 
     /**
      * @brief 检查纹理是否有效
      */
-    [[nodiscard]] bool IsValid() const { return _image && _image->IsValid(); }
+    [[nodiscard]] bool IsValid() const
+    {
+        return _image && _image->IsValid();
+    }
 
   private:
     std::shared_ptr<image::Image> _image; // 持有图像数据（可共享）

@@ -54,129 +54,204 @@ class Color
     }
 
     // 获取分量
-    uint8_t R() const { return ExtractR(_rgba); }
-    uint8_t G() const { return ExtractG(_rgba); }
-    uint8_t B() const { return ExtractB(_rgba); }
-    uint8_t A() const { return ExtractA(_rgba); }
+    uint8_t R() const
+    {
+        return ExtractR(_rgba);
+    }
+    uint8_t G() const
+    {
+        return ExtractG(_rgba);
+    }
+    uint8_t B() const
+    {
+        return ExtractB(_rgba);
+    }
+    uint8_t A() const
+    {
+        return ExtractA(_rgba);
+    }
 
-    bool operator==(const Color& other) const { return _rgba == other._rgba; }
+    bool operator==(const Color& other) const
+    {
+        return _rgba == other._rgba;
+    }
 
     // 获取原始 uint32_t 值（SDL_PIXELFORMAT_RGBA8888格式）
-    uint32_t ToUint32() const { return _rgba; }
+    uint32_t ToUint32() const
+    {
+        return _rgba;
+    }
 
     /**
      * @brief 黑色
      * @return Color 黑色(0, 0, 0)
      */
-    static Color Black() { return Color(0, 0, 0); }
+    static Color Black()
+    {
+        return Color(0, 0, 0);
+    }
 
     /**
      * @brief 白色
      * @return Color 白色(255, 255, 255)
      */
-    static Color White() { return Color(255, 255, 255); }
+    static Color White()
+    {
+        return Color(255, 255, 255);
+    }
 
     /**
      * @brief 红色
      * @return Color 红色(255, 0, 0)
      */
-    static Color Red() { return Color(255, 0, 0); }
+    static Color Red()
+    {
+        return Color(255, 0, 0);
+    }
 
     /**
      * @brief 绿色
      * @return Color 绿色(0, 255, 0)
      */
-    static Color Green() { return Color(0, 255, 0); }
+    static Color Green()
+    {
+        return Color(0, 255, 0);
+    }
 
     /**
      * @brief 蓝色
      * @return Color 蓝色(0, 0, 255)
      */
-    static Color Blue() { return Color(0, 0, 255); }
+    static Color Blue()
+    {
+        return Color(0, 0, 255);
+    }
 
     /**
      * @brief 黄色
      * @return Color 黄色(255, 255, 0)
      */
-    static Color Yellow() { return Color(255, 255, 0); }
+    static Color Yellow()
+    {
+        return Color(255, 255, 0);
+    }
 
     /**
      * @brief 青色
      * @return Color 青色(0, 255, 255)
      */
-    static Color Cyan() { return Color(0, 255, 255); }
+    static Color Cyan()
+    {
+        return Color(0, 255, 255);
+    }
 
     /**
      * @brief 洋红色
      * @return Color 洋红色(255, 0, 255)
      */
-    static Color Magenta() { return Color(255, 0, 255); }
+    static Color Magenta()
+    {
+        return Color(255, 0, 255);
+    }
 
     /**
      * @brief 橙色
      * @return Color 橙色(255, 165, 0)
      */
-    static Color Orange() { return Color(255, 165, 0); }
+    static Color Orange()
+    {
+        return Color(255, 165, 0);
+    }
 
     /**
      * @brief 紫色
      * @return Color 紫色(128, 0, 128)
      */
-    static Color Purple() { return Color(128, 0, 128); }
+    static Color Purple()
+    {
+        return Color(128, 0, 128);
+    }
 
     /**
      * @brief 粉色
      * @return Color 粉色(255, 192, 203)
      */
-    static Color Pink() { return Color(255, 192, 203); }
+    static Color Pink()
+    {
+        return Color(255, 192, 203);
+    }
 
     /**
      * @brief 柠檬绿
      * @return Color 柠檬绿(0, 255, 0)
      */
-    static Color Lime() { return Color(0, 255, 0); }
+    static Color Lime()
+    {
+        return Color(0, 255, 0);
+    }
 
     /**
      * @brief 蓝绿色
      * @return Color 蓝绿色(0, 128, 128)
      */
-    static Color Teal() { return Color(0, 128, 128); }
+    static Color Teal()
+    {
+        return Color(0, 128, 128);
+    }
 
     /**
      * @brief 海军蓝
      * @return Color 海军蓝(0, 0, 128)
      */
-    static Color Navy() { return Color(0, 0, 128); }
+    static Color Navy()
+    {
+        return Color(0, 0, 128);
+    }
 
     /**
      * @brief 栗色
      * @return Color 栗色(128, 0, 0)
      */
-    static Color Maroon() { return Color(128, 0, 0); }
+    static Color Maroon()
+    {
+        return Color(128, 0, 0);
+    }
 
     /**
      * @brief 橄榄色
      * @return Color 橄榄色(128, 128, 0)
      */
-    static Color Olive() { return Color(128, 128, 0); }
+    static Color Olive()
+    {
+        return Color(128, 128, 0);
+    }
 
     /**
      * @brief 银色
      * @return Color 银色(192, 192, 192)
      */
-    static Color Silver() { return Color(192, 192, 192); }
+    static Color Silver()
+    {
+        return Color(192, 192, 192);
+    }
 
     /**
      * @brief 灰色
      * @return Color 灰色(128, 128, 128)
      */
-    static Color Gray() { return Color(128, 128, 128); }
+    static Color Gray()
+    {
+        return Color(128, 128, 128);
+    }
 
     /**
      * @brief 透明色
      * @return Color 透明色(0, 0, 0, 0)
      */
-    static Color Transparent() { return Color(0, 0, 0, 0); }
+    static Color Transparent()
+    {
+        return Color(0, 0, 0, 0);
+    }
 
   private:
     uint32_t _rgba; // SDL_PIXELFORMAT_RGBA8888格式

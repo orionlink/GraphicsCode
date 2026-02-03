@@ -103,7 +103,10 @@ ImageLoader::ImageData ImageLoader::LoadFromMemory(const uint8_t* buffer, size_t
     return ImageData(std::move(pixels), width, height, actual_channels);
 }
 
-void ImageLoader::SetFlipVerticallyOnLoad(bool flip) { stbi_set_flip_vertically_on_load(flip ? 1 : 0); }
+void ImageLoader::SetFlipVerticallyOnLoad(bool flip)
+{
+    stbi_set_flip_vertically_on_load(flip ? 1 : 0);
+}
 
 bool ImageLoader::GetInfo(const std::string& file_path, int& width, int& height, int& channels)
 {

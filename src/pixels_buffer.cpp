@@ -32,6 +32,12 @@ void PixelsBuffer::SetPixel(int x, int y, const Color& color)
     _pixel_data[static_cast<size_t>(y) * _width + x] = color.ToUint32();
 }
 
-void PixelsBuffer::Clear(const Color& color) { std::fill(_pixel_data.begin(), _pixel_data.end(), color.ToUint32()); }
+void PixelsBuffer::Clear(const Color& color)
+{
+    std::fill(_pixel_data.begin(), _pixel_data.end(), color.ToUint32());
+}
 
-bool PixelsBuffer::IsValidCoordinate(int x, int y) const { return x >= 0 && x < _width && y >= 0 && y < _height; }
+bool PixelsBuffer::IsValidCoordinate(int x, int y) const
+{
+    return x >= 0 && x < _width && y >= 0 && y < _height;
+}

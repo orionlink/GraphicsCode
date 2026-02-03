@@ -44,13 +44,22 @@ struct BarycentricCoord
     /**
      * @brief 获取顶点数量
      */
-    [[nodiscard]] size_t Size() const { return weights.size(); }
+    [[nodiscard]] size_t Size() const
+    {
+        return weights.size();
+    }
 
     /**
      * @brief 访问指定索引的权重
      */
-    float& operator[](size_t index) { return weights[index]; }
-    const float& operator[](size_t index) const { return weights[index]; }
+    float& operator[](size_t index)
+    {
+        return weights[index];
+    }
+    const float& operator[](size_t index) const
+    {
+        return weights[index];
+    }
 };
 
 /**
@@ -77,12 +86,18 @@ class IPrimitive
      * @brief 设置纹理（基类提供默认实现）
      * @param texture 纹理对象
      */
-    virtual void SetTexture(std::shared_ptr<texture::Texture> texture) { _texture = texture; }
+    virtual void SetTexture(std::shared_ptr<texture::Texture> texture)
+    {
+        _texture = texture;
+    }
 
     /**
      * @brief 获取纹理
      */
-    [[nodiscard]] std::shared_ptr<texture::Texture> GetTexture() const { return _texture; }
+    [[nodiscard]] std::shared_ptr<texture::Texture> GetTexture() const
+    {
+        return _texture;
+    }
 
   protected:
     std::shared_ptr<texture::Texture> _texture; // 纹理（所有图元共享）

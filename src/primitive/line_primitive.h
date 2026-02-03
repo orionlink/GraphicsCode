@@ -57,12 +57,30 @@ class LinePrimitive : public IPrimitive
     std::unique_ptr<IPrimitive> Clone() const override;
 
     // 获取属性
-    int X1() const { return _x1; }
-    int Y1() const { return _y1; }
-    int X2() const { return _x2; }
-    int Y2() const { return _y2; }
-    Color GetColor() const { return _color; }
-    bool IsAntialiased() const { return _antialiased; }
+    int X1() const
+    {
+        return _x1;
+    }
+    int Y1() const
+    {
+        return _y1;
+    }
+    int X2() const
+    {
+        return _x2;
+    }
+    int Y2() const
+    {
+        return _y2;
+    }
+    Color GetColor() const
+    {
+        return _color;
+    }
+    bool IsAntialiased() const
+    {
+        return _antialiased;
+    }
 
     // 设置属性
     void SetStart(int x, int y)
@@ -77,19 +95,28 @@ class LinePrimitive : public IPrimitive
         _y2 = y;
     }
 
-    void SetColor(const Color& color) { _color = color; }
+    void SetColor(const Color& color)
+    {
+        _color = color;
+    }
 
     /**
      * @brief 设置抗锯齿选项
      * @param antialiased true 启用 Wu 氏抗锯齿，false 使用 Bresenham 算法
      */
-    void SetAntialiased(bool antialiased) { _antialiased = antialiased; }
+    void SetAntialiased(bool antialiased)
+    {
+        _antialiased = antialiased;
+    }
 
     /**
      * @brief 转换为 math::Line2i
      * @return 对应的二维整数线段
      */
-    math::Line2i ToLine2i() const { return math::Line2i(math::Point2i(_x1, _y1), math::Point2i(_x2, _y2)); }
+    math::Line2i ToLine2i() const
+    {
+        return math::Line2i(math::Point2i(_x1, _y1), math::Point2i(_x2, _y2));
+    }
 
     /**
      * @brief 转换为 math::Line2f
@@ -116,10 +143,16 @@ class LinePrimitive : public IPrimitive
     void DrawAntialiased(PixelsBuffer& buffer) const;
 
     // 辅助函数: 返回小数部分
-    static float fpart(float x) { return x - std::floor(x); }
+    static float fpart(float x)
+    {
+        return x - std::floor(x);
+    }
 
     // 辅助函数: 返回 1 - 小数部分
-    static float rfpart(float x) { return 1.0f - fpart(x); }
+    static float rfpart(float x)
+    {
+        return 1.0f - fpart(x);
+    }
 
     // 辅助函数: 混合颜色与背景
     static Color BlendColor(const Color& fg, float alpha, const Color& bg = Color::Black())

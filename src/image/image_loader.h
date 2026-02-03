@@ -28,11 +28,23 @@ class ImageLoader
         {
         }
 
-        [[nodiscard]] bool IsValid() const { return !pixels.empty(); }
+        [[nodiscard]] bool IsValid() const
+        {
+            return !pixels.empty();
+        }
 
-        uint32_t* Data() { return pixels.data(); }
-        [[nodiscard]] std::vector<uint32_t> PixelsData() const { return pixels; }
-        [[nodiscard]] size_t Size() const { return pixels.size(); }
+        uint32_t* Data()
+        {
+            return pixels.data();
+        }
+        [[nodiscard]] std::vector<uint32_t> PixelsData() const
+        {
+            return pixels;
+        }
+        [[nodiscard]] size_t Size() const
+        {
+            return pixels.size();
+        }
     };
 
     ImageLoader() = delete;

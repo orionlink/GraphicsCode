@@ -104,67 +104,100 @@ template <class T> class BoundingBox2
      * @brief 获取边界框的宽度
      * @return 边界框的宽度
      */
-    T Width() const { return _max_x - _min_x; }
+    T Width() const
+    {
+        return _max_x - _min_x;
+    }
 
     /**
      * @brief 获取边界框的高度
      * @return 边界框的高度
      */
-    T Height() const { return _max_y - _min_y; }
+    T Height() const
+    {
+        return _max_y - _min_y;
+    }
 
     /**
      * @brief 获取边界框的面积
      * @return 边界框的面积
      */
-    T Area() const { return Width() * Height(); }
+    T Area() const
+    {
+        return Width() * Height();
+    }
 
     /**
      * @brief 获取最小x坐标
      * @return 最小x坐标
      */
-    T MinX() const { return _min_x; }
+    T MinX() const
+    {
+        return _min_x;
+    }
 
     /**
      * @brief 获取最小y坐标
      * @return 最小y坐标
      */
-    T MinY() const { return _min_y; }
+    T MinY() const
+    {
+        return _min_y;
+    }
 
     /**
      * @brief 获取最大x坐标
      * @return 最大x坐标
      */
-    T MaxX() const { return _max_x; }
+    T MaxX() const
+    {
+        return _max_x;
+    }
 
     /**
      * @brief 获取最大y坐标
      * @return 最大y坐标
      */
-    T MaxY() const { return _max_y; }
+    T MaxY() const
+    {
+        return _max_y;
+    }
 
     /**
      * @brief 获取最小点（左下角）
      * @return 最小点
      */
-    Point2<T> MinPoint() const { return Point2<T>(_min_x, _min_y); }
+    Point2<T> MinPoint() const
+    {
+        return Point2<T>(_min_x, _min_y);
+    }
 
     /**
      * @brief 获取最大点（右上角）
      * @return 最大点
      */
-    Point2<T> MaxPoint() const { return Point2<T>(_max_x, _max_y); }
+    Point2<T> MaxPoint() const
+    {
+        return Point2<T>(_max_x, _max_y);
+    }
 
     /**
      * @brief 获取中心点
      * @return 中心点
      */
-    Point2<T> Center() const { return Point2<T>((_min_x + _max_x) / T(2), (_min_y + _max_y) / T(2)); }
+    Point2<T> Center() const
+    {
+        return Point2<T>((_min_x + _max_x) / T(2), (_min_y + _max_y) / T(2));
+    }
 
     /**
      * @brief 判断边界框是否有效（已添加过点）
      * @return 如果有效返回true，否则返回false
      */
-    bool IsValid() const { return _min_x <= _max_x && _min_y <= _max_y; }
+    bool IsValid() const
+    {
+        return _min_x <= _max_x && _min_y <= _max_y;
+    }
 
     /**
      * @brief 判断两个边界框是否相等
@@ -181,7 +214,10 @@ template <class T> class BoundingBox2
      * @param other 另一个边界框
      * @return 如果不相等返回true，否则返回false
      */
-    bool operator!=(const BoundingBox2& other) const { return !(*this == other); }
+    bool operator!=(const BoundingBox2& other) const
+    {
+        return !(*this == other);
+    }
 
   private:
     T _min_x, _min_y, _max_x, _max_y;

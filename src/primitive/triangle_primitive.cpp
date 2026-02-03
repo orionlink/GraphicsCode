@@ -66,7 +66,10 @@ void TrianglePrimitive::Draw(PixelsBuffer& buffer) const
     }
 }
 
-std::unique_ptr<IPrimitive> TrianglePrimitive::Clone() const { return std::make_unique<TrianglePrimitive>(*this); }
+std::unique_ptr<IPrimitive> TrianglePrimitive::Clone() const
+{
+    return std::make_unique<TrianglePrimitive>(*this);
+}
 
 BarycentricCoord TrianglePrimitive::ComputeBarycentricCoord(int x, int y) const
 {

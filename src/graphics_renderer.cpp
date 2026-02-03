@@ -9,9 +9,15 @@
 
 GraphicsRenderer::GraphicsRenderer(PixelsBuffer& buffer) : _buffer(buffer) {}
 
-void GraphicsRenderer::Clear(const Color& color) { _buffer.Clear(color); }
+void GraphicsRenderer::Clear(const Color& color)
+{
+    _buffer.Clear(color);
+}
 
-void GraphicsRenderer::Draw(const pri::IPrimitive& primitive) { primitive.Draw(_buffer); }
+void GraphicsRenderer::Draw(const pri::IPrimitive& primitive)
+{
+    primitive.Draw(_buffer);
+}
 
 void GraphicsRenderer::DrawPoint(int x, int y, const Color& color)
 {
@@ -19,7 +25,10 @@ void GraphicsRenderer::DrawPoint(int x, int y, const Color& color)
     point.Draw(_buffer);
 }
 
-void GraphicsRenderer::DrawPoint(const pri::PointPrimitive& point) { point.Draw(_buffer); }
+void GraphicsRenderer::DrawPoint(const pri::PointPrimitive& point)
+{
+    point.Draw(_buffer);
+}
 
 void GraphicsRenderer::DrawLine(int x1, int y1, int x2, int y2, const Color& color)
 {
@@ -123,7 +132,10 @@ void GraphicsRenderer::AddPrimitive(std::unique_ptr<pri::IPrimitive> primitive)
     _primitives.push_back(std::move(primitive));
 }
 
-void GraphicsRenderer::ClearPrimitives() { _primitives.clear(); }
+void GraphicsRenderer::ClearPrimitives()
+{
+    _primitives.clear();
+}
 
 void GraphicsRenderer::DrawAllPrimitives()
 {

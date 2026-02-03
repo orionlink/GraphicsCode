@@ -67,51 +67,75 @@ template <class T> class Line2
      * @brief 获取起点
      * @return 起点的引用
      */
-    const Point2<T>& Start() const { return _start; }
+    const Point2<T>& Start() const
+    {
+        return _start;
+    }
 
     /**
      * @brief 获取终点
      * @return 终点的引用
      */
-    const Point2<T>& End() const { return _end; }
+    const Point2<T>& End() const
+    {
+        return _end;
+    }
 
     /**
      * @brief 获取起点（可修改）
      * @return 起点的引用
      */
-    Point2<T>& Start() { return _start; }
+    Point2<T>& Start()
+    {
+        return _start;
+    }
 
     /**
      * @brief 获取终点（可修改）
      * @return 终点的引用
      */
-    Point2<T>& End() { return _end; }
+    Point2<T>& End()
+    {
+        return _end;
+    }
 
     /**
      * @brief 设置起点
      * @param start 起点
      */
-    void SetStart(const Point2<T>& start) { _start = start; }
+    void SetStart(const Point2<T>& start)
+    {
+        _start = start;
+    }
 
     /**
      * @brief 设置终点
      * @param end 终点
      */
-    void SetEnd(const Point2<T>& end) { _end = end; }
+    void SetEnd(const Point2<T>& end)
+    {
+        _end = end;
+    }
 
     /**
      * @brief 设置起点坐标
      * @param x x坐标
      * @param y y坐标
      */
-    void SetStart(T x, T y) { _start.Set(x, y); }
+    void SetStart(T x, T y)
+    {
+        _start.Set(x, y);
+    }
 
     /**
      * @brief 设置终点坐标
      * @param x x坐标
      * @param y y坐标
      */
-    void SetEnd(T x, T y) { _end.Set(x, y); }
+    void SetEnd(T x, T y)
+    {
+        _end.Set(x, y);
+    }
 
     /**
      * @brief 设置线段
@@ -141,7 +165,10 @@ template <class T> class Line2
      * @brief 获取方向向量（从起点指向终点）
      * @return 方向向量
      */
-    Vector2<T> Direction() const { return _end - _start; }
+    Vector2<T> Direction() const
+    {
+        return _end - _start;
+    }
 
     /**
      * @brief 获取归一化的方向向量
@@ -157,44 +184,65 @@ template <class T> class Line2
      * @brief 计算线段长度
      * @return 线段长度
      */
-    T Length() const { return _start.DistanceTo(_end); }
+    T Length() const
+    {
+        return _start.DistanceTo(_end);
+    }
 
     /**
      * @brief 计算线段长度的平方（避免开方运算）
      * @return 线段长度的平方
      */
-    T LengthSquared() const { return _start.DistanceSquaredTo(_end); }
+    T LengthSquared() const
+    {
+        return _start.DistanceSquaredTo(_end);
+    }
 
     /**
      * @brief 获取中点
      * @return 线段中点
      */
-    Point2<T> Midpoint() const { return Point2<T>((_start.X() + _end.X()) / T(2), (_start.Y() + _end.Y()) / T(2)); }
+    Point2<T> Midpoint() const
+    {
+        return Point2<T>((_start.X() + _end.X()) / T(2), (_start.Y() + _end.Y()) / T(2));
+    }
 
     /**
      * @brief 反转线段（交换起点和终点）
      */
-    void Reverse() { std::swap(_start, _end); }
+    void Reverse()
+    {
+        std::swap(_start, _end);
+    }
 
     /**
      * @brief 获取反转后的线段
      * @return 反转后的新线段
      */
-    Line2 Reversed() const { return Line2(_end, _start); }
+    Line2 Reversed() const
+    {
+        return Line2(_end, _start);
+    }
 
     /**
      * @brief 判断两条线段是否相等
      * @param line 另一条线段
      * @return 如果相等返回true，否则返回false
      */
-    bool operator==(const Line2& line) const { return _start == line._start && _end == line._end; }
+    bool operator==(const Line2& line) const
+    {
+        return _start == line._start && _end == line._end;
+    }
 
     /**
      * @brief 判断两条线段是否不相等
      * @param line 另一条线段
      * @return 如果不相等返回true，否则返回false
      */
-    bool operator!=(const Line2& line) const { return !(*this == line); }
+    bool operator!=(const Line2& line) const
+    {
+        return !(*this == line);
+    }
 
     /**
      * @brief 输出流运算符
@@ -268,37 +316,55 @@ template <class T> class Line3
      * @brief 获取起点
      * @return 起点的引用
      */
-    const Point3<T>& Start() const { return _start; }
+    const Point3<T>& Start() const
+    {
+        return _start;
+    }
 
     /**
      * @brief 获取终点
      * @return 终点的引用
      */
-    const Point3<T>& End() const { return _end; }
+    const Point3<T>& End() const
+    {
+        return _end;
+    }
 
     /**
      * @brief 获取起点（可修改）
      * @return 起点的引用
      */
-    Point3<T>& Start() { return _start; }
+    Point3<T>& Start()
+    {
+        return _start;
+    }
 
     /**
      * @brief 获取终点（可修改）
      * @return 终点的引用
      */
-    Point3<T>& End() { return _end; }
+    Point3<T>& End()
+    {
+        return _end;
+    }
 
     /**
      * @brief 设置起点
      * @param start 起点
      */
-    void SetStart(const Point3<T>& start) { _start = start; }
+    void SetStart(const Point3<T>& start)
+    {
+        _start = start;
+    }
 
     /**
      * @brief 设置终点
      * @param end 终点
      */
-    void SetEnd(const Point3<T>& end) { _end = end; }
+    void SetEnd(const Point3<T>& end)
+    {
+        _end = end;
+    }
 
     /**
      * @brief 设置起点坐标
@@ -306,7 +372,10 @@ template <class T> class Line3
      * @param y y坐标
      * @param z z坐标
      */
-    void SetStart(T x, T y, T z) { _start.Set(x, y, z); }
+    void SetStart(T x, T y, T z)
+    {
+        _start.Set(x, y, z);
+    }
 
     /**
      * @brief 设置终点坐标
@@ -314,7 +383,10 @@ template <class T> class Line3
      * @param y y坐标
      * @param z z坐标
      */
-    void SetEnd(T x, T y, T z) { _end.Set(x, y, z); }
+    void SetEnd(T x, T y, T z)
+    {
+        _end.Set(x, y, z);
+    }
 
     /**
      * @brief 设置线段
@@ -346,7 +418,10 @@ template <class T> class Line3
      * @brief 获取方向向量（从起点指向终点）
      * @return 方向向量
      */
-    Vector3<T> Direction() const { return _end - _start; }
+    Vector3<T> Direction() const
+    {
+        return _end - _start;
+    }
 
     /**
      * @brief 获取归一化的方向向量
@@ -362,13 +437,19 @@ template <class T> class Line3
      * @brief 计算线段长度
      * @return 线段长度
      */
-    T Length() const { return _start.DistanceTo(_end); }
+    T Length() const
+    {
+        return _start.DistanceTo(_end);
+    }
 
     /**
      * @brief 计算线段长度的平方（避免开方运算）
      * @return 线段长度的平方
      */
-    T LengthSquared() const { return _start.DistanceSquaredTo(_end); }
+    T LengthSquared() const
+    {
+        return _start.DistanceSquaredTo(_end);
+    }
 
     /**
      * @brief 获取中点
@@ -383,27 +464,39 @@ template <class T> class Line3
     /**
      * @brief 反转线段（交换起点和终点）
      */
-    void Reverse() { std::swap(_start, _end); }
+    void Reverse()
+    {
+        std::swap(_start, _end);
+    }
 
     /**
      * @brief 获取反转后的线段
      * @return 反转后的新线段
      */
-    Line3 Reversed() const { return Line3(_end, _start); }
+    Line3 Reversed() const
+    {
+        return Line3(_end, _start);
+    }
 
     /**
      * @brief 判断两条线段是否相等
      * @param line 另一条线段
      * @return 如果相等返回true，否则返回false
      */
-    bool operator==(const Line3& line) const { return _start == line._start && _end == line._end; }
+    bool operator==(const Line3& line) const
+    {
+        return _start == line._start && _end == line._end;
+    }
 
     /**
      * @brief 判断两条线段是否不相等
      * @param line 另一条线段
      * @return 如果不相等返回true，否则返回false
      */
-    bool operator!=(const Line3& line) const { return !(*this == line); }
+    bool operator!=(const Line3& line) const
+    {
+        return !(*this == line);
+    }
 
     /**
      * @brief 输出流运算符

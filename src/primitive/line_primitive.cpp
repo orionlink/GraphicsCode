@@ -154,6 +154,9 @@ void LinePrimitive::DrawAntialiased(PixelsBuffer& buffer) const
     }
 }
 
-std::unique_ptr<IPrimitive> LinePrimitive::Clone() const { return std::make_unique<LinePrimitive>(*this); }
+std::unique_ptr<IPrimitive> LinePrimitive::Clone() const
+{
+    return std::make_unique<LinePrimitive>(*this);
+}
 
 } // namespace pri

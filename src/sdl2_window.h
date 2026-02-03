@@ -24,9 +24,15 @@ class Sdl2Window
     /**
      * @brief 获取图形渲染器，用于绘制图元
      */
-    GraphicsRenderer& graphicsRenderer() { return *_graphics_renderer; }
+    GraphicsRenderer& graphicsRenderer()
+    {
+        return *_graphics_renderer;
+    }
 
-    const GraphicsRenderer& graphicsRenderer() const { return *_graphics_renderer; }
+    const GraphicsRenderer& graphicsRenderer() const
+    {
+        return *_graphics_renderer;
+    }
 
   private:
     /**

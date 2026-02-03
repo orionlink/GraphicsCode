@@ -74,31 +74,46 @@ template <class T> class Point2
      * @brief 转换为Vector2
      * @return 对应的二维向量
      */
-    Vector2<T> ToVector() const { return Vector2<T>(_x, _y); }
+    Vector2<T> ToVector() const
+    {
+        return Vector2<T>(_x, _y);
+    }
 
     /**
      * @brief 获取x坐标
      * @return x坐标值
      */
-    T X() const { return _x; }
+    T X() const
+    {
+        return _x;
+    }
 
     /**
      * @brief 获取y坐标
      * @return y坐标值
      */
-    T Y() const { return _y; }
+    T Y() const
+    {
+        return _y;
+    }
 
     /**
      * @brief 设置x坐标
      * @param x x坐标值
      */
-    void SetX(T x) { _x = x; }
+    void SetX(T x)
+    {
+        _x = x;
+    }
 
     /**
      * @brief 设置y坐标
      * @param y y坐标值
      */
-    void SetY(T y) { _y = y; }
+    void SetY(T y)
+    {
+        _y = y;
+    }
 
     /**
      * @brief 设置坐标
@@ -152,7 +167,10 @@ template <class T> class Point2
      * @param v 平移向量
      * @return 平移后的新点
      */
-    Point2 operator+(const Vector2<T>& v) const { return Point2(_x + v[0], _y + v[1]); }
+    Point2 operator+(const Vector2<T>& v) const
+    {
+        return Point2(_x + v[0], _y + v[1]);
+    }
 
     /**
      * @brief 点加法赋值（平移）
@@ -171,7 +189,10 @@ template <class T> class Point2
      * @param v 平移向量
      * @return 平移后的新点
      */
-    Point2 operator-(const Vector2<T>& v) const { return Point2(_x - v[0], _y - v[1]); }
+    Point2 operator-(const Vector2<T>& v) const
+    {
+        return Point2(_x - v[0], _y - v[1]);
+    }
 
     /**
      * @brief 点减法赋值（平移）
@@ -190,26 +211,38 @@ template <class T> class Point2
      * @param p 另一个点
      * @return 从当前点到p的向量
      */
-    Vector2<T> operator-(const Point2& p) const { return Vector2<T>(_x - p._x, _y - p._y); }
+    Vector2<T> operator-(const Point2& p) const
+    {
+        return Vector2<T>(_x - p._x, _y - p._y);
+    }
 
     /**
      * @brief 判断两点是否相等
      * @param p 另一个点
      * @return 如果相等返回true，否则返回false
      */
-    bool operator==(const Point2& p) const { return _x == p._x && _y == p._y; }
+    bool operator==(const Point2& p) const
+    {
+        return _x == p._x && _y == p._y;
+    }
 
     /**
      * @brief 判断两点是否不相等
      * @param p 另一个点
      * @return 如果不相等返回true，否则返回false
      */
-    bool operator!=(const Point2& p) const { return !(*this == p); }
+    bool operator!=(const Point2& p) const
+    {
+        return !(*this == p);
+    }
 
     /**
      * @brief 交换x和y坐标
      */
-    void SwapXY() { std::swap(_x, _y); }
+    void SwapXY()
+    {
+        std::swap(_x, _y);
+    }
 
     /**
      * @brief 计算到另一个点的距离
@@ -334,49 +367,73 @@ template <class T> class Point3
      * @brief 转换为Vector3
      * @return 对应的三维向量
      */
-    Vector3<T> ToVector() const { return Vector3<T>(_x, _y, _z); }
+    Vector3<T> ToVector() const
+    {
+        return Vector3<T>(_x, _y, _z);
+    }
 
     /**
      * @brief 转换为Point2（丢弃z坐标）
      * @return 对应的二维点
      */
-    Point2<T> ToPoint2() const { return Point2<T>(_x, _y); }
+    Point2<T> ToPoint2() const
+    {
+        return Point2<T>(_x, _y);
+    }
 
     /**
      * @brief 获取x坐标
      * @return x坐标值
      */
-    T X() const { return _x; }
+    T X() const
+    {
+        return _x;
+    }
 
     /**
      * @brief 获取y坐标
      * @return y坐标值
      */
-    T Y() const { return _y; }
+    T Y() const
+    {
+        return _y;
+    }
 
     /**
      * @brief 获取z坐标
      * @return z坐标值
      */
-    T Z() const { return _z; }
+    T Z() const
+    {
+        return _z;
+    }
 
     /**
      * @brief 设置x坐标
      * @param x x坐标值
      */
-    void SetX(T x) { _x = x; }
+    void SetX(T x)
+    {
+        _x = x;
+    }
 
     /**
      * @brief 设置y坐标
      * @param y y坐标值
      */
-    void SetY(T y) { _y = y; }
+    void SetY(T y)
+    {
+        _y = y;
+    }
 
     /**
      * @brief 设置z坐标
      * @param z z坐标值
      */
-    void SetZ(T z) { _z = z; }
+    void SetZ(T z)
+    {
+        _z = z;
+    }
 
     /**
      * @brief 设置坐标
@@ -436,7 +493,10 @@ template <class T> class Point3
      * @param v 平移向量
      * @return 平移后的新点
      */
-    Point3 operator+(const Vector3<T>& v) const { return Point3(_x + v[0], _y + v[1], _z + v[2]); }
+    Point3 operator+(const Vector3<T>& v) const
+    {
+        return Point3(_x + v[0], _y + v[1], _z + v[2]);
+    }
 
     /**
      * @brief 点加法赋值（平移）
@@ -456,7 +516,10 @@ template <class T> class Point3
      * @param v 平移向量
      * @return 平移后的新点
      */
-    Point3 operator-(const Vector3<T>& v) const { return Point3(_x - v[0], _y - v[1], _z - v[2]); }
+    Point3 operator-(const Vector3<T>& v) const
+    {
+        return Point3(_x - v[0], _y - v[1], _z - v[2]);
+    }
 
     /**
      * @brief 点减法赋值（平移）
@@ -476,21 +539,30 @@ template <class T> class Point3
      * @param p 另一个点
      * @return 从当前点到p的向量
      */
-    Vector3<T> operator-(const Point3& p) const { return Vector3<T>(_x - p._x, _y - p._y, _z - p._z); }
+    Vector3<T> operator-(const Point3& p) const
+    {
+        return Vector3<T>(_x - p._x, _y - p._y, _z - p._z);
+    }
 
     /**
      * @brief 判断两点是否相等
      * @param p 另一个点
      * @return 如果相等返回true，否则返回false
      */
-    bool operator==(const Point3& p) const { return _x == p._x && _y == p._y && _z == p._z; }
+    bool operator==(const Point3& p) const
+    {
+        return _x == p._x && _y == p._y && _z == p._z;
+    }
 
     /**
      * @brief 判断两点是否不相等
      * @param p 另一个点
      * @return 如果不相等返回true，否则返回false
      */
-    bool operator!=(const Point3& p) const { return !(*this == p); }
+    bool operator!=(const Point3& p) const
+    {
+        return !(*this == p);
+    }
 
     /**
      * @brief 计算到另一个点的距离
