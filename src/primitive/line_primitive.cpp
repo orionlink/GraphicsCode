@@ -9,7 +9,7 @@ namespace pri
 {
 
 // LinePrimitive 实现
-void LinePrimitive::Draw(PixelsBuffer &buffer) const
+void LinePrimitive::Draw(PixelsBuffer& buffer) const
 {
     if (_antialiased)
     {
@@ -22,7 +22,7 @@ void LinePrimitive::Draw(PixelsBuffer &buffer) const
 }
 
 // Bresenham 直线算法
-void LinePrimitive::DrawBresenham(PixelsBuffer &buffer) const
+void LinePrimitive::DrawBresenham(PixelsBuffer& buffer) const
 {
     int dx = std::abs(_x2 - _x1);
     int dy = std::abs(_y2 - _y1);
@@ -50,7 +50,7 @@ void LinePrimitive::DrawBresenham(PixelsBuffer &buffer) const
         if (x == _x2 && y == _y2)
             break;
         int e2 = 2 * err; // 避免除2产生浮点数, 等价于 err > -dy / 2, err < dx / 2
-        if (e2 > -dy) // err > -dy/2
+        if (e2 > -dy)     // err > -dy/2
         {
             err -= dy;
             x += sx;
@@ -64,7 +64,7 @@ void LinePrimitive::DrawBresenham(PixelsBuffer &buffer) const
 }
 
 // Wu 氏抗锯齿直线算法
-void LinePrimitive::DrawAntialiased(PixelsBuffer &buffer) const
+void LinePrimitive::DrawAntialiased(PixelsBuffer& buffer) const
 {
     float x0 = static_cast<float>(_x1);
     float y0 = static_cast<float>(_y1);
@@ -101,14 +101,12 @@ void LinePrimitive::DrawAntialiased(PixelsBuffer &buffer) const
     if (steep)
     {
         buffer.SetPixel(ypxl1, xpxl1, BlendColor(_color, rfpart(yend) * xgap));
-        buffer.SetPixel(ypxl1 + 1, xpxl1,
-                        BlendColor(_color, fpart(yend) * xgap));
+        buffer.SetPixel(ypxl1 + 1, xpxl1, BlendColor(_color, fpart(yend) * xgap));
     }
     else
     {
         buffer.SetPixel(xpxl1, ypxl1, BlendColor(_color, rfpart(yend) * xgap));
-        buffer.SetPixel(xpxl1, ypxl1 + 1,
-                        BlendColor(_color, fpart(yend) * xgap));
+        buffer.SetPixel(xpxl1, ypxl1 + 1, BlendColor(_color, fpart(yend) * xgap));
     }
 
     float intery = yend + gradient; // 第一个y交点
@@ -123,14 +121,12 @@ void LinePrimitive::DrawAntialiased(PixelsBuffer &buffer) const
     if (steep)
     {
         buffer.SetPixel(ypxl2, xpxl2, BlendColor(_color, rfpart(yend) * xgap));
-        buffer.SetPixel(ypxl2 + 1, xpxl2,
-                        BlendColor(_color, fpart(yend) * xgap));
+        buffer.SetPixel(ypxl2 + 1, xpxl2, BlendColor(_color, fpart(yend) * xgap));
     }
     else
     {
         buffer.SetPixel(xpxl2, ypxl2, BlendColor(_color, rfpart(yend) * xgap));
-        buffer.SetPixel(xpxl2, ypxl2 + 1,
-                        BlendColor(_color, fpart(yend) * xgap));
+        buffer.SetPixel(xpxl2, ypxl2 + 1, BlendColor(_color, fpart(yend) * xgap));
     }
 
     // 主循环: 绘制中间的所有点
@@ -158,9 +154,6 @@ void LinePrimitive::DrawAntialiased(PixelsBuffer &buffer) const
     }
 }
 
-std::unique_ptr<IPrimitive> LinePrimitive::Clone() const
-{
-    return std::make_unique<LinePrimitive>(*this);
-}
+std::unique_ptr<IPrimitive> LinePrimitive::Clone() const { return std::make_unique<LinePrimitive>(*this); }
 
-} // pri
+} // namespace pri

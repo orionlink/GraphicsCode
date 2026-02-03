@@ -4,17 +4,16 @@
 
 #ifndef SDL2WINDOW_H
 #define SDL2WINDOW_H
-#include <SDL.h>
-#include <string>
-#include <memory>
-#include "pixels_buffer.h"
 #include "graphics_renderer.h"
+#include "pixels_buffer.h"
+#include <SDL.h>
+#include <memory>
+#include <string>
 
 class Sdl2Window
 {
-public:
-    Sdl2Window(const std::string &title, const int32_t width,
-               const int32_t height);
+  public:
+    Sdl2Window(const std::string& title, const int32_t width, const int32_t height);
     ~Sdl2Window();
 
     /**
@@ -25,14 +24,11 @@ public:
     /**
      * @brief 获取图形渲染器，用于绘制图元
      */
-    GraphicsRenderer &graphicsRenderer() { return *_graphics_renderer; }
+    GraphicsRenderer& graphicsRenderer() { return *_graphics_renderer; }
 
-    const GraphicsRenderer &graphicsRenderer() const
-    {
-        return *_graphics_renderer;
-    }
+    const GraphicsRenderer& graphicsRenderer() const { return *_graphics_renderer; }
 
-private:
+  private:
     /**
      * @brief
      */
@@ -45,13 +41,11 @@ private:
      * @param data
      * @return
      */
-    static SDL_HitTestResult HitTestCallback(SDL_Window *window,
-                                             const SDL_Point *area,
-                                             void *data);
+    static SDL_HitTestResult HitTestCallback(SDL_Window* window, const SDL_Point* area, void* data);
 
-    SDL_Window *_window;
-    SDL_Renderer *_renderer;
-    SDL_Texture *_texture;
+    SDL_Window* _window;
+    SDL_Renderer* _renderer;
+    SDL_Texture* _texture;
 
     std::string title;
     int32_t _width;
@@ -63,4 +57,4 @@ private:
     std::unique_ptr<GraphicsRenderer> _graphics_renderer;
 };
 
-#endif //SDL2WINDOW_H
+#endif // SDL2WINDOW_H

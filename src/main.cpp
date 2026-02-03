@@ -7,9 +7,9 @@
 #include "triangle_primitive.h"
 
 #include <cstdlib>
+#include <filesystem>
 #include <iostream>
 #include <memory>
-#include <filesystem>
 
 using namespace math;
 using namespace std;
@@ -21,19 +21,19 @@ using namespace std;
 //    = π/180 弧度
 #define DEG2RAD(deg) ((deg) * M_PI / 180.0)
 
-void TestRenderer(GraphicsRenderer &renderer);
+void TestRenderer(GraphicsRenderer& renderer);
 void TestVector();
 
 const int g_width = 800;
 const int g_height = 600;
 
-int main(int argc, char *argv[])
+int main(int argc, char* argv[])
 {
     (void)argc; // 避免未使用参数警告
     (void)argv;
 
     Sdl2Window window("OpenGL 学习", g_width, g_height);
-    auto &renderer = window.graphicsRenderer();
+    auto& renderer = window.graphicsRenderer();
 
 #if 1 // 1. 红色方块 (左上角) - 应该显示红色
     TestRenderer(renderer);
@@ -123,8 +123,7 @@ void TestVector()
     std::cout << "v33 = " << v33.PrintToString() << std::endl;
 }
 
-void BresenhamLine(const pri::PointPrimitive point1,
-                   const pri::PointPrimitive point2, GraphicsRenderer &renderer)
+void BresenhamLine(const pri::PointPrimitive point1, const pri::PointPrimitive point2, GraphicsRenderer& renderer)
 {
     pri::PointPrimitive start_point = point1;
     pri::PointPrimitive end_point = point2;
@@ -182,13 +181,11 @@ void BresenhamLine(const pri::PointPrimitive point1,
         float t = 0.0f;
         if (point1.X() != point2.X())
         {
-            t = static_cast<float>((result_point.X() - point1.X())) /
-                (static_cast<float>(point2.X() - point1.X()));
+            t = static_cast<float>((result_point.X() - point1.X())) / (static_cast<float>(point2.X() - point1.X()));
         }
         else if (point1.Y() != point2.Y())
         {
-            t = static_cast<float>((result_point.Y() - point1.Y())) /
-                (static_cast<float>(point2.Y() - point1.Y()));
+            t = static_cast<float>((result_point.Y() - point1.Y())) / (static_cast<float>(point2.Y() - point1.Y()));
         }
 
         Color color = Color::Lerp(point1.GetColor(), point2.GetColor(), t);
@@ -198,7 +195,7 @@ void BresenhamLine(const pri::PointPrimitive point1,
     }
 }
 
-void TestRenderer(GraphicsRenderer &renderer)
+void TestRenderer(GraphicsRenderer& renderer)
 {
 #if 0
     // 简单直线算法
@@ -291,10 +288,8 @@ void TestRenderer(GraphicsRenderer &renderer)
         int x = r * cos(radian) + c.X(); // 圆上的 x 坐标
         int y = r * sin(radian) + c.Y(); // 圆上的 y 坐标
         pri::PointPrimitive pt{x, y,
-                               Color{static_cast<unsigned char>(rand() % 255),
-                                     static_cast<unsigned char>(rand() % 255),
-                                     static_cast<unsigned char>(rand() % 255),
-                                     255}};
+                               Color{static_cast<unsigned char>(rand() % 255), static_cast<unsigned char>(rand() % 255),
+                                     static_cast<unsigned char>(rand() % 255), 255}};
         // renderer.DrawLine(c, pt); // 从圆心画线到圆周
         BresenhamLine(c, pt, renderer);
         // renderer.DrawAntialiasedLine(c, pt);
@@ -323,14 +318,12 @@ void TestRenderer(GraphicsRenderer &renderer)
     std::string current_dir = std::filesystem::current_path().string();
     // 资源路径跨平台处理
 #if defined(_WIN32) || defined(__WIN32__)
-        std::string image_path = current_dir + "\\resource\\images\\goku.jpg";
+    std::string image_path = current_dir + "\\resource\\images\\goku.jpg";
 #else
-        std::string image_path = current_dir + "/resource/images/goku.jpg";
+    std::string image_path = current_dir + "/resource/images/goku.jpg";
 #endif
-    auto image =
-        std::make_shared<image::Image>(image_path);
+    auto image = std::make_shared<image::Image>(image_path);
     image->Move(math::Point2i(450, 350));
-
     auto texture = std::make_shared<texture::Texture>(image);
     texture->SetSampleMode(texture::SampleMode::Nearest);
 
@@ -339,13 +332,23 @@ void TestRenderer(GraphicsRenderer &renderer)
                         math::Point2f(1.0f, 1.0f),          // p2 -> 右下角
                         math::Point2f(0.5f, 0.0f)           // p3 -> 上中间
     );
+
     renderer.Draw(triangle);
 
-    pri::TrianglePrimitive triangle2{{0, 500}, {400, 500}, {200, 10}};
+    int offset_x = 0;
+    int offset_y = 0;
+    pri::TrianglePrimitive triangle2{
+        {0 + offset_x, 500 + offset_y}, {400 + offset_x, 500 + offset_y}, {200 + offset_x, 10 + offset_y}};
+
     texture->SetSampleMode(texture::SampleMode::Bilinear);
-    triangle2.SetTexture(texture, math::Point2f(0.0f, 1.0f), // p1 -> 左下角
-                        math::Point2f(1.0f, 1.0f),          // p2 -> 右下角
-                        math::Point2f(0.5f, 0.0f)           // p3 -> 上中间
+    // triangle2.SetTexture(texture, math::Point2f(0.0f, 1.0f), // p1 -> 左下角
+    //                     math::Point2f(1.0f, 1.0f),          // p2 -> 右下角
+    //                     math::Point2f(0.5f, 0.0f)           // p3 -> 上中间
+    // );
+    texture->SetWrapMode(texture::WrapMode::Mirror);
+    triangle2.SetTexture(texture, math::Point2f(0.0f, 10.0f), // p1 -> 左下角
+                         math::Point2f(10.0f, 10.0f),         // p2 -> 右下角
+                         math::Point2f(5.0f, 0.0f)            // p3 -> 上中间
     );
     renderer.Draw(triangle2);
 

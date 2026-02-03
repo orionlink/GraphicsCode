@@ -11,7 +11,7 @@ namespace texture
 
 Texture::Texture(std::shared_ptr<image::Image> image) : _image(image) {}
 
-Texture::Texture(const std::string &file_path, int desired_channels)
+Texture::Texture(const std::string& file_path, int desired_channels)
     : _image(std::make_shared<image::Image>(file_path, desired_channels))
 {
 }

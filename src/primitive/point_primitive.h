@@ -5,8 +5,8 @@
 #ifndef POINT_PRIMITIVE_H
 #define POINT_PRIMITIVE_H
 
-#include "primitive.h"
 #include "../math/point.h"
+#include "primitive.h"
 
 namespace pri
 {
@@ -16,18 +16,15 @@ namespace pri
  */
 class PointPrimitive : public IPrimitive
 {
-public:
-    PointPrimitive(int x, int y, const Color &color = Color::Green())
-        : _x(x), _y(y), _color(color)
-    {
-    }
+  public:
+    PointPrimitive(int x, int y, const Color& color = Color::Green()) : _x(x), _y(y), _color(color) {}
 
     /**
      * @brief 从 math::Point2i 构造
      * @param point 二维整数点
      * @param color 颜色
      */
-    PointPrimitive(const math::Point2i &point, const Color &color = Color::Green())
+    PointPrimitive(const math::Point2i& point, const Color& color = Color::Green())
         : _x(point.X()), _y(point.Y()), _color(color)
     {
     }
@@ -37,26 +34,21 @@ public:
      * @param point 二维浮点 point
      * @param color 颜色
      */
-    PointPrimitive(const math::Point2f &point, const Color &color = Color::Green())
-        : _x(static_cast<int>(std::round(point.X()))), 
-          _y(static_cast<int>(std::round(point.Y()))), 
-          _color(color)
+    PointPrimitive(const math::Point2f& point, const Color& color = Color::Green())
+        : _x(static_cast<int>(std::round(point.X()))), _y(static_cast<int>(std::round(point.Y()))), _color(color)
     {
     }
 
-    void Draw(PixelsBuffer &buffer) const override;
+    void Draw(PixelsBuffer& buffer) const override;
     std::unique_ptr<IPrimitive> Clone() const override;
 
-    void Swap(PointPrimitive &other)
+    void Swap(PointPrimitive& other)
     {
         std::swap(_x, other._x);
         std::swap(_y, other._y);
     }
 
-    void SwapXY()
-    {
-        std::swap(_x, _y);
-    }
+    void SwapXY() { std::swap(_x, _y); }
 
     // 获取属性
     int X() const { return _x; }
@@ -72,7 +64,7 @@ public:
         _y = y;
     }
 
-    void SetColor(const Color &color) { _color = color; }
+    void SetColor(const Color& color) { _color = color; }
 
     /**
      * @brief 转换为 math::Point2i
@@ -86,12 +78,12 @@ public:
      */
     math::Point2f ToPoint2f() const { return math::Point2f(static_cast<float>(_x), static_cast<float>(_y)); }
 
-private:
+  private:
     int _x;
     int _y;
     Color _color;
 };
 
-}
+} // namespace pri
 
-#endif //POINT_PRIMITIVE_H
+#endif // POINT_PRIMITIVE_H

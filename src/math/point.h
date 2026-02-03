@@ -6,8 +6,8 @@
 #define POINT_H
 
 #include "vector.h"
-#include <iostream>
 #include <algorithm>
+#include <iostream>
 
 namespace math
 {
@@ -16,48 +16,39 @@ namespace math
  * @brief 二维点类模板
  * @tparam T 坐标数据类型（如int, float, double等）
  */
-template <class T>
-class Point2
+template <class T> class Point2
 {
-public:
+  public:
     /**
      * @brief 默认构造函数，初始化为原点
      */
-    Point2() : _x(0), _y(0)
-    {
-    }
+    Point2() : _x(0), _y(0) {}
 
     /**
      * @brief 参数化构造函数
      * @param x x坐标
      * @param y y坐标
      */
-    Point2(T x, T y) : _x(x), _y(y)
-    {
-    }
+    Point2(T x, T y) : _x(x), _y(y) {}
 
     /**
      * @brief 从Vector2构造
      * @param v 二维向量
      */
-    Point2(const Vector2<T> &v) : _x(v[0]), _y(v[1])
-    {
-    }
+    Point2(const Vector2<T>& v) : _x(v[0]), _y(v[1]) {}
 
     /**
      * @brief 拷贝构造函数
      * @param p 要拷贝的点
      */
-    Point2(const Point2 &p) : _x(p._x), _y(p._y)
-    {
-    }
+    Point2(const Point2& p) : _x(p._x), _y(p._y) {}
 
     /**
      * @brief 赋值运算符
      * @param p 要赋值的点
      * @return 当前点的引用
      */
-    Point2 &operator=(const Point2 &p)
+    Point2& operator=(const Point2& p)
     {
         if (this == &p)
             return *this;
@@ -72,7 +63,7 @@ public:
      * @param v 二维向量
      * @return 当前点的引用
      */
-    Point2 &operator=(const Vector2<T> &v)
+    Point2& operator=(const Vector2<T>& v)
     {
         _x = v[0];
         _y = v[1];
@@ -83,10 +74,7 @@ public:
      * @brief 转换为Vector2
      * @return 对应的二维向量
      */
-    Vector2<T> ToVector() const
-    {
-        return Vector2<T>(_x, _y);
-    }
+    Vector2<T> ToVector() const { return Vector2<T>(_x, _y); }
 
     /**
      * @brief 获取x坐标
@@ -146,7 +134,7 @@ public:
      * @param index 索引（0=x, 1=y）
      * @return 对应坐标的引用
      */
-    T &operator[](const int index)
+    T& operator[](const int index)
     {
         switch (index)
         {
@@ -164,17 +152,14 @@ public:
      * @param v 平移向量
      * @return 平移后的新点
      */
-    Point2 operator+(const Vector2<T> &v) const
-    {
-        return Point2(_x + v[0], _y + v[1]);
-    }
+    Point2 operator+(const Vector2<T>& v) const { return Point2(_x + v[0], _y + v[1]); }
 
     /**
      * @brief 点加法赋值（平移）
      * @param v 平移向量
      * @return 当前点的引用
      */
-    Point2 &operator+=(const Vector2<T> &v)
+    Point2& operator+=(const Vector2<T>& v)
     {
         _x += v[0];
         _y += v[1];
@@ -186,17 +171,14 @@ public:
      * @param v 平移向量
      * @return 平移后的新点
      */
-    Point2 operator-(const Vector2<T> &v) const
-    {
-        return Point2(_x - v[0], _y - v[1]);
-    }
+    Point2 operator-(const Vector2<T>& v) const { return Point2(_x - v[0], _y - v[1]); }
 
     /**
      * @brief 点减法赋值（平移）
      * @param v 平移向量
      * @return 当前点的引用
      */
-    Point2 &operator-=(const Vector2<T> &v)
+    Point2& operator-=(const Vector2<T>& v)
     {
         _x -= v[0];
         _y -= v[1];
@@ -208,45 +190,33 @@ public:
      * @param p 另一个点
      * @return 从当前点到p的向量
      */
-    Vector2<T> operator-(const Point2 &p) const
-    {
-        return Vector2<T>(_x - p._x, _y - p._y);
-    }
+    Vector2<T> operator-(const Point2& p) const { return Vector2<T>(_x - p._x, _y - p._y); }
 
     /**
      * @brief 判断两点是否相等
      * @param p 另一个点
      * @return 如果相等返回true，否则返回false
      */
-    bool operator==(const Point2 &p) const
-    {
-        return _x == p._x && _y == p._y;
-    }
+    bool operator==(const Point2& p) const { return _x == p._x && _y == p._y; }
 
     /**
      * @brief 判断两点是否不相等
      * @param p 另一个点
      * @return 如果不相等返回true，否则返回false
      */
-    bool operator!=(const Point2 &p) const
-    {
-        return !(*this == p);
-    }
+    bool operator!=(const Point2& p) const { return !(*this == p); }
 
     /**
      * @brief 交换x和y坐标
      */
-    void SwapXY()
-    {
-        std::swap(_x, _y);
-    }
+    void SwapXY() { std::swap(_x, _y); }
 
     /**
      * @brief 计算到另一个点的距离
      * @param p 另一个点
      * @return 两点之间的距离
      */
-    T DistanceTo(const Point2 &p) const
+    T DistanceTo(const Point2& p) const
     {
         Vector2<T> diff = *this - p;
         return diff.Length();
@@ -257,7 +227,7 @@ public:
      * @param p 另一个点
      * @return 两点之间距离的平方
      */
-    T DistanceSquaredTo(const Point2 &p) const
+    T DistanceSquaredTo(const Point2& p) const
     {
         Vector2<T> diff = *this - p;
         return diff.LengthSquared();
@@ -269,13 +239,13 @@ public:
      * @param p 点
      * @return 输出流引用
      */
-    friend std::ostream &operator<<(std::ostream &os, const Point2 &p)
+    friend std::ostream& operator<<(std::ostream& os, const Point2& p)
     {
         os << "Point2(" << p._x << ", " << p._y << ")";
         return os;
     }
 
-private:
+  private:
     T _x;
     T _y;
 };
@@ -284,16 +254,13 @@ private:
  * @brief 三维点类模板
  * @tparam T 坐标数据类型（如int, float, double等）
  */
-template <class T>
-class Point3
+template <class T> class Point3
 {
-public:
+  public:
     /**
      * @brief 默认构造函数，初始化为原点
      */
-    Point3() : _x(0), _y(0), _z(0)
-    {
-    }
+    Point3() : _x(0), _y(0), _z(0) {}
 
     /**
      * @brief 参数化构造函数
@@ -301,40 +268,32 @@ public:
      * @param y y坐标
      * @param z z坐标
      */
-    Point3(T x, T y, T z) : _x(x), _y(y), _z(z)
-    {
-    }
+    Point3(T x, T y, T z) : _x(x), _y(y), _z(z) {}
 
     /**
      * @brief 从Vector3构造
      * @param v 三维向量
      */
-    Point3(const Vector3<T> &v) : _x(v[0]), _y(v[1]), _z(v[2])
-    {
-    }
+    Point3(const Vector3<T>& v) : _x(v[0]), _y(v[1]), _z(v[2]) {}
 
     /**
      * @brief 从Point2构造，z坐标设为0
      * @param p 二维点
      */
-    Point3(const Point2<T> &p) : _x(p[0]), _y(p[1]), _z(0)
-    {
-    }
+    Point3(const Point2<T>& p) : _x(p[0]), _y(p[1]), _z(0) {}
 
     /**
      * @brief 拷贝构造函数
      * @param p 要拷贝的点
      */
-    Point3(const Point3 &p) : _x(p._x), _y(p._y), _z(p._z)
-    {
-    }
+    Point3(const Point3& p) : _x(p._x), _y(p._y), _z(p._z) {}
 
     /**
      * @brief 赋值运算符
      * @param p 要赋值的点
      * @return 当前点的引用
      */
-    Point3 &operator=(const Point3 &p)
+    Point3& operator=(const Point3& p)
     {
         if (this == &p)
             return *this;
@@ -350,7 +309,7 @@ public:
      * @param v 三维向量
      * @return 当前点的引用
      */
-    Point3 &operator=(const Vector3<T> &v)
+    Point3& operator=(const Vector3<T>& v)
     {
         _x = v[0];
         _y = v[1];
@@ -363,7 +322,7 @@ public:
      * @param p 二维点
      * @return 当前点的引用
      */
-    Point3 &operator=(const Point2<T> &p)
+    Point3& operator=(const Point2<T>& p)
     {
         _x = p[0];
         _y = p[1];
@@ -375,19 +334,13 @@ public:
      * @brief 转换为Vector3
      * @return 对应的三维向量
      */
-    Vector3<T> ToVector() const
-    {
-        return Vector3<T>(_x, _y, _z);
-    }
+    Vector3<T> ToVector() const { return Vector3<T>(_x, _y, _z); }
 
     /**
      * @brief 转换为Point2（丢弃z坐标）
      * @return 对应的二维点
      */
-    Point2<T> ToPoint2() const
-    {
-        return Point2<T>(_x, _y);
-    }
+    Point2<T> ToPoint2() const { return Point2<T>(_x, _y); }
 
     /**
      * @brief 获取x坐标
@@ -463,7 +416,7 @@ public:
      * @param index 索引（0=x, 1=y, 2=z）
      * @return 对应坐标的引用
      */
-    T &operator[](const int index)
+    T& operator[](const int index)
     {
         switch (index)
         {
@@ -483,17 +436,14 @@ public:
      * @param v 平移向量
      * @return 平移后的新点
      */
-    Point3 operator+(const Vector3<T> &v) const
-    {
-        return Point3(_x + v[0], _y + v[1], _z + v[2]);
-    }
+    Point3 operator+(const Vector3<T>& v) const { return Point3(_x + v[0], _y + v[1], _z + v[2]); }
 
     /**
      * @brief 点加法赋值（平移）
      * @param v 平移向量
      * @return 当前点的引用
      */
-    Point3 &operator+=(const Vector3<T> &v)
+    Point3& operator+=(const Vector3<T>& v)
     {
         _x += v[0];
         _y += v[1];
@@ -506,17 +456,14 @@ public:
      * @param v 平移向量
      * @return 平移后的新点
      */
-    Point3 operator-(const Vector3<T> &v) const
-    {
-        return Point3(_x - v[0], _y - v[1], _z - v[2]);
-    }
+    Point3 operator-(const Vector3<T>& v) const { return Point3(_x - v[0], _y - v[1], _z - v[2]); }
 
     /**
      * @brief 点减法赋值（平移）
      * @param v 平移向量
      * @return 当前点的引用
      */
-    Point3 &operator-=(const Vector3<T> &v)
+    Point3& operator-=(const Vector3<T>& v)
     {
         _x -= v[0];
         _y -= v[1];
@@ -529,37 +476,28 @@ public:
      * @param p 另一个点
      * @return 从当前点到p的向量
      */
-    Vector3<T> operator-(const Point3 &p) const
-    {
-        return Vector3<T>(_x - p._x, _y - p._y, _z - p._z);
-    }
+    Vector3<T> operator-(const Point3& p) const { return Vector3<T>(_x - p._x, _y - p._y, _z - p._z); }
 
     /**
      * @brief 判断两点是否相等
      * @param p 另一个点
      * @return 如果相等返回true，否则返回false
      */
-    bool operator==(const Point3 &p) const
-    {
-        return _x == p._x && _y == p._y && _z == p._z;
-    }
+    bool operator==(const Point3& p) const { return _x == p._x && _y == p._y && _z == p._z; }
 
     /**
      * @brief 判断两点是否不相等
      * @param p 另一个点
      * @return 如果不相等返回true，否则返回false
      */
-    bool operator!=(const Point3 &p) const
-    {
-        return !(*this == p);
-    }
+    bool operator!=(const Point3& p) const { return !(*this == p); }
 
     /**
      * @brief 计算到另一个点的距离
      * @param p 另一个点
      * @return 两点之间的距离
      */
-    T DistanceTo(const Point3 &p) const
+    T DistanceTo(const Point3& p) const
     {
         Vector3<T> diff = *this - p;
         return diff.Length();
@@ -570,7 +508,7 @@ public:
      * @param p 另一个点
      * @return 两点之间距离的平方
      */
-    T DistanceSquaredTo(const Point3 &p) const
+    T DistanceSquaredTo(const Point3& p) const
     {
         Vector3<T> diff = *this - p;
         return diff.LengthSquared();
@@ -582,13 +520,13 @@ public:
      * @param p 点
      * @return 输出流引用
      */
-    friend std::ostream &operator<<(std::ostream &os, const Point3 &p)
+    friend std::ostream& operator<<(std::ostream& os, const Point3& p)
     {
         os << "Point3(" << p._x << ", " << p._y << ", " << p._z << ")";
         return os;
     }
 
-private:
+  private:
     T _x;
     T _y;
     T _z;

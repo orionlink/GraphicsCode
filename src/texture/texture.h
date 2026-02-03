@@ -5,27 +5,30 @@
 #ifndef TEXTURE_H
 #define TEXTURE_H
 
-#include <memory>
 #include "color.h"
 #include "image/image.h"
+#include <memory>
 
-namespace texture {
+namespace texture
+{
 
 /**
  * @brief 纹理采样模式
  */
-enum class SampleMode {
-    Nearest,    // 最近邻采样
-    Bilinear    // 双线性插值
+enum class SampleMode
+{
+    Nearest, // 最近邻采样
+    Bilinear // 双线性插值
 };
 
 /**
  * @brief 纹理环绕模式
  */
-enum class WrapMode {
-    Clamp,      // 钳制到边缘
-    Repeat,     // 重复平铺
-    Mirror      // 镜像重复
+enum class WrapMode
+{
+    Clamp,  // 钳制到边缘
+    Repeat, // 重复平铺
+    Mirror  // 镜像重复
 };
 
 /**
@@ -34,14 +37,15 @@ enum class WrapMode {
  *   1. 持有图像数据（Image）
  *   2. 提供纹理采样功能（UV坐标 -> 颜色）
  *   3. 管理采样模式和环绕模式
- * 
+ *
  * 设计思路：
  *   - Image 负责存储原始像素数据（数据层）
  *   - Texture 负责采样和过滤（渲染层）
  *   - 多个 Texture 可以共享同一个 Image（内存优化）
  */
-class Texture {
-public:
+class Texture
+{
+  public:
     /**
      * @brief 从 Image 创建纹理
      * @param image 图像对象（共享指针，允许多个 Texture 共享）
@@ -105,8 +109,8 @@ public:
      */
     [[nodiscard]] bool IsValid() const { return _image && _image->IsValid(); }
 
-private:
-    std::shared_ptr<image::Image> _image;  // 持有图像数据（可共享）
+  private:
+    std::shared_ptr<image::Image> _image; // 持有图像数据（可共享）
     SampleMode _sample_mode = SampleMode::Nearest;
     WrapMode _wrap_mode = WrapMode::Clamp;
 

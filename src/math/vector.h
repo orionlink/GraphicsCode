@@ -12,12 +12,9 @@
 namespace math
 {
 
-template <class T>
-class Vector3;
-template <class T>
-class Vector4;
-template <class T>
-class Vector2;
+template <class T> class Vector3;
+template <class T> class Vector4;
+template <class T> class Vector2;
 
 using Vector2i = Vector2<int>;
 using Vector2d = Vector2<double>;
@@ -35,56 +32,45 @@ using Vector4f = Vector4<float>;
  * @brief 二维向量类模板
  * @tparam T 向量分量的数据类型（如int, float, double等）
  */
-template <class T>
-class Vector2
+template <class T> class Vector2
 {
-public:
+  public:
     /**
      * @brief 默认构造函数，初始化为零向量
      */
-    Vector2() : _x(0), _y(0)
-    {
-    }
+    Vector2() : _x(0), _y(0) {}
 
     /**
      * @brief 参数化构造函数
      * @param x x分量
      * @param y y分量
      */
-    Vector2(T x, T y) : _x(x), _y(y)
-    {
-    }
+    Vector2(T x, T y) : _x(x), _y(y) {}
 
     /**
      * @brief 拷贝构造函数
      * @param v 要拷贝的向量
      */
-    Vector2(const Vector2 &v) : _x(v._x), _y(v._y)
-    {
-    }
+    Vector2(const Vector2& v) : _x(v._x), _y(v._y) {}
 
     /**
      * @brief 从Vector3构造，丢弃z分量
      * @param v 三维向量
      */
-    Vector2(const Vector3<T> &v) : _x(v[0]), _y(v[1])
-    {
-    }
+    Vector2(const Vector3<T>& v) : _x(v[0]), _y(v[1]) {}
 
     /**
      * @brief 从Vector4构造，丢弃z和w分量
      * @param v 四维向量
      */
-    Vector2(const Vector4<T> &v) : _x(v[0]), _y(v[1])
-    {
-    }
+    Vector2(const Vector4<T>& v) : _x(v[0]), _y(v[1]) {}
 
     /**
      * @brief 赋值运算符
      * @param v 要赋值的向量
      * @return 当前向量的引用
      */
-    Vector2 &operator=(const Vector2 &v)
+    Vector2& operator=(const Vector2& v)
     {
         if (this == &v)
             return *this;
@@ -99,7 +85,7 @@ public:
      * @param v 三维向量
      * @return 当前向量的引用
      */
-    Vector2 &operator=(const Vector3<T> &v)
+    Vector2& operator=(const Vector3<T>& v)
     {
         _x = v[0];
         _y = v[1];
@@ -111,7 +97,7 @@ public:
      * @param v 四维向量
      * @return 当前向量的引用
      */
-    Vector2 &operator=(const Vector4<T> &v)
+    Vector2& operator=(const Vector4<T>& v)
     {
         _x = v[0];
         _y = v[1];
@@ -141,7 +127,7 @@ public:
      * @param index 索引（0=x, 1=y）
      * @return 对应分量的引用
      */
-    T &operator[](const int index)
+    T& operator[](const int index)
     {
         switch (index)
         {
@@ -159,17 +145,14 @@ public:
      * @param v 要相加的向量
      * @return 相加后的新向量
      */
-    Vector2 operator+(const Vector2 &v) const
-    {
-        return Vector2(_x + v._x, _y + v._y);
-    }
+    Vector2 operator+(const Vector2& v) const { return Vector2(_x + v._x, _y + v._y); }
 
     /**
      * @brief 向量加法赋值
      * @param v 要相加的向量
      * @return 当前向量的引用
      */
-    Vector2 &operator+=(const Vector2 &v)
+    Vector2& operator+=(const Vector2& v)
     {
         _x += v._x;
         _y += v._y;
@@ -181,17 +164,14 @@ public:
      * @param s 标量值
      * @return 相乘后的新向量
      */
-    Vector2 operator*(const T s) const
-    {
-        return Vector2(_x * s, _y * s);
-    }
+    Vector2 operator*(const T s) const { return Vector2(_x * s, _y * s); }
 
     /**
      * @brief 标量乘法赋值
      * @param s 标量值
      * @return 当前向量的引用
      */
-    Vector2 &operator*=(const T s)
+    Vector2& operator*=(const T s)
     {
         _x *= s;
         _y *= s;
@@ -217,7 +197,7 @@ public:
      * @param s 标量值
      * @return 当前向量的引用，如果s接近0则不做修改
      */
-    Vector2 &operator/=(const T s)
+    Vector2& operator/=(const T s)
     {
         if (std::abs(s) < std::numeric_limits<T>::epsilon())
         {
@@ -232,27 +212,21 @@ public:
      * @brief 向量取反（负号运算符）
      * @return 取反后的新向量
      */
-    Vector2 operator-()
-    {
-        return Vector2(-_x, -_y);
-    }
+    Vector2 operator-() { return Vector2(-_x, -_y); }
 
     /**
      * @brief 向量减法
      * @param v 要相减的向量
      * @return 相减后的新向量
      */
-    Vector2 operator-(const Vector2 &v) const
-    {
-        return Vector2(_x - v._x, _y - v._y);
-    }
+    Vector2 operator-(const Vector2& v) const { return Vector2(_x - v._x, _y - v._y); }
 
     /**
      * @brief 向量减法赋值
      * @param v 要相减的向量
      * @return 当前向量的引用
      */
-    Vector2 &operator-=(const Vector2 &v)
+    Vector2& operator-=(const Vector2& v)
     {
         _x -= v._x;
         _y -= v._y;
@@ -264,17 +238,14 @@ public:
      * @param v 要相乘的向量
      * @return 逐元素相乘后的新向量
      */
-    Vector2 operator*(const Vector2 &v) const
-    {
-        return Vector2(_x * v._x, _y * v._y);
-    }
+    Vector2 operator*(const Vector2& v) const { return Vector2(_x * v._x, _y * v._y); }
 
     /**
      * @brief 向量逐元素乘法赋值
      * @param v 要相乘的向量
      * @return 当前向量的引用
      */
-    Vector2 &operator*=(const Vector2 &v)
+    Vector2& operator*=(const Vector2& v)
     {
         _x *= v._x;
         _y *= v._y;
@@ -286,38 +257,26 @@ public:
      * @param v 另一个向量
      * @return 点积结果
      */
-    T Dot(const Vector2 &v) const
-    {
-        return _x * v._x + _y * v._y;
-    }
+    T Dot(const Vector2& v) const { return _x * v._x + _y * v._y; }
 
     /**
      * @brief 计算向量的叉积（外积）
      * @param v 另一个向量
      * @return 叉积结果标量
      */
-    T Cross(const Vector2 &v) const
-    {
-        return _x * v._y - _y * v._x;
-    }
+    T Cross(const Vector2& v) const { return _x * v._y - _y * v._x; }
 
     /**
      * @brief 计算向量长度的平方
      * @return 向量长度的平方
      */
-    T LengthSquared() const
-    {
-        return _x * _x + _y * _y;
-    }
+    T LengthSquared() const { return _x * _x + _y * _y; }
 
     /**
      * @brief 计算向量的长度（模）
      * @return 向量的长度
      */
-    T Length() const
-    {
-        return std::sqrt(LengthSquared());
-    }
+    T Length() const { return std::sqrt(LengthSquared()); }
 
     /**
      * @brief 返回归一化后的新向量（单位向量）
@@ -337,7 +296,7 @@ public:
      * @brief 将当前向量归一化（转换为单位向量）
      * @return 当前向量的引用，如果长度为0则不做修改
      */
-    Vector2 &Normalize()
+    Vector2& Normalize()
     {
         T len = Length();
         if (std::abs(len) < std::numeric_limits<T>::epsilon())
@@ -353,10 +312,7 @@ public:
      * @brief 计算向量的绝对值（各分量取绝对值）
      * @return 各分量取绝对值后的新向量
      */
-    Vector2 Abs() const
-    {
-        return Vector2(std::abs(_x), std::abs(_y));
-    }
+    Vector2 Abs() const { return Vector2(std::abs(_x), std::abs(_y)); }
 
     T X() const { return _x; }
     T Y() const { return _y; }
@@ -364,10 +320,7 @@ public:
     /**
      * @brief 输出向量信息
      */
-    void Print()
-    {
-        std::cout << "x: " << _x << ", y: " << _y << std::endl;
-    }
+    void Print() { std::cout << "x: " << _x << ", y: " << _y << std::endl; }
 
     /**
      * @brief 输出向量信息到字符串
@@ -380,7 +333,7 @@ public:
         return ss.str();
     }
 
-private:
+  private:
     T _x, _y;
 };
 
@@ -388,16 +341,13 @@ private:
  * @brief 三维向量类模板
  * @tparam T 向量分量的数据类型（如int, float, double等）
  */
-template <class T>
-class Vector3
+template <class T> class Vector3
 {
-public:
+  public:
     /**
      * @brief 默认构造函数，初始化为零向量
      */
-    Vector3() : _x(0), _y(0), _z(0)
-    {
-    }
+    Vector3() : _x(0), _y(0), _z(0) {}
 
     /**
      * @brief 参数化构造函数
@@ -405,40 +355,32 @@ public:
      * @param y y分量
      * @param z z分量
      */
-    Vector3(T x, T y, T z) : _x(x), _y(y), _z(z)
-    {
-    }
+    Vector3(T x, T y, T z) : _x(x), _y(y), _z(z) {}
 
     /**
      * @brief 拷贝构造函数
      * @param v 要拷贝的向量
      */
-    Vector3(const Vector3 &v) : _x(v._x), _y(v._y), _z(v._z)
-    {
-    }
+    Vector3(const Vector3& v) : _x(v._x), _y(v._y), _z(v._z) {}
 
     /**
      * @brief 从Vector2构造，z分量设为0
      * @param v 二维向量
      */
-    Vector3(const Vector2<T> &v) : _x(v[0]), _y(v[1]), _z(0)
-    {
-    }
+    Vector3(const Vector2<T>& v) : _x(v[0]), _y(v[1]), _z(0) {}
 
     /**
      * @brief 从Vector4构造，丢弃w分量
      * @param v 四维向量
      */
-    Vector3(const Vector4<T> &v) : _x(v[0]), _y(v[1]), _z(v[2])
-    {
-    }
+    Vector3(const Vector4<T>& v) : _x(v[0]), _y(v[1]), _z(v[2]) {}
 
     /**
      * @brief 赋值运算符
      * @param v 要赋值的向量
      * @return 当前向量的引用
      */
-    Vector3 &operator=(const Vector3 &v)
+    Vector3& operator=(const Vector3& v)
     {
         if (this == &v)
             return *this;
@@ -454,7 +396,7 @@ public:
      * @param v 二维向量
      * @return 当前向量的引用
      */
-    Vector3 &operator=(const Vector2<T> &v)
+    Vector3& operator=(const Vector2<T>& v)
     {
         _x = v[0];
         _y = v[1];
@@ -467,7 +409,7 @@ public:
      * @param v 四维向量
      * @return 当前向量的引用
      */
-    Vector3 &operator=(const Vector4<T> &v)
+    Vector3& operator=(const Vector4<T>& v)
     {
         _x = v[0];
         _y = v[1];
@@ -500,7 +442,7 @@ public:
      * @param index 索引（0=x, 1=y, 2=z）
      * @return 对应分量的引用
      */
-    T &operator[](const int index)
+    T& operator[](const int index)
     {
         switch (index)
         {
@@ -520,17 +462,14 @@ public:
      * @param v 要相加的向量
      * @return 相加后的新向量
      */
-    Vector3 operator+(const Vector3 &v) const
-    {
-        return Vector3(_x + v._x, _y + v._y, _z + v._z);
-    }
+    Vector3 operator+(const Vector3& v) const { return Vector3(_x + v._x, _y + v._y, _z + v._z); }
 
     /**
      * @brief 向量加法赋值
      * @param v 要相加的向量
      * @return 当前向量的引用
      */
-    Vector3 &operator+=(const Vector3 &v)
+    Vector3& operator+=(const Vector3& v)
     {
         _x += v._x;
         _y += v._y;
@@ -543,17 +482,14 @@ public:
      * @param s 标量值
      * @return 相乘后的新向量
      */
-    Vector3 operator*(const T s) const
-    {
-        return Vector3(_x * s, _y * s, _z * s);
-    }
+    Vector3 operator*(const T s) const { return Vector3(_x * s, _y * s, _z * s); }
 
     /**
      * @brief 标量乘法赋值
      * @param s 标量值
      * @return 当前向量的引用
      */
-    Vector3 &operator*=(const T s)
+    Vector3& operator*=(const T s)
     {
         _x *= s;
         _y *= s;
@@ -580,7 +516,7 @@ public:
      * @param s 标量值
      * @return 当前向量的引用，如果s接近0则不做修改
      */
-    Vector3 &operator/=(const T s)
+    Vector3& operator/=(const T s)
     {
         if (std::abs(s) < std::numeric_limits<T>::epsilon())
         {
@@ -596,27 +532,21 @@ public:
      * @brief 向量取反（负号运算符）
      * @return 取反后的新向量
      */
-    Vector3 operator-()
-    {
-        return Vector3(-_x, -_y, -_z);
-    }
+    Vector3 operator-() { return Vector3(-_x, -_y, -_z); }
 
     /**
      * @brief 向量减法
      * @param v 要相减的向量
      * @return 相减后的新向量
      */
-    Vector3 operator-(const Vector3 &v) const
-    {
-        return Vector3(_x - v._x, _y - v._y, _z - v._z);
-    }
+    Vector3 operator-(const Vector3& v) const { return Vector3(_x - v._x, _y - v._y, _z - v._z); }
 
     /**
      * @brief 向量减法赋值
      * @param v 要相减的向量
      * @return 当前向量的引用
      */
-    Vector3 &operator-=(const Vector3 &v)
+    Vector3& operator-=(const Vector3& v)
     {
         _x -= v._x;
         _y -= v._y;
@@ -629,17 +559,14 @@ public:
      * @param v 要相乘的向量
      * @return 逐元素相乘后的新向量
      */
-    Vector3 operator*(const Vector3 &v) const
-    {
-        return Vector3(_x * v._x, _y * v._y, _z * v._z);
-    }
+    Vector3 operator*(const Vector3& v) const { return Vector3(_x * v._x, _y * v._y, _z * v._z); }
 
     /**
      * @brief 向量逐元素乘法赋值
      * @param v 要相乘的向量
      * @return 当前向量的引用
      */
-    Vector3 &operator*=(const Vector3 &v)
+    Vector3& operator*=(const Vector3& v)
     {
         _x *= v._x;
         _y *= v._y;
@@ -652,42 +579,29 @@ public:
      * @param v 另一个向量
      * @return 点积结果
      */
-    T Dot(const Vector3 &v) const
-    {
-        return _x * v._x + _y * v._y + _z * v._z;
-    }
+    T Dot(const Vector3& v) const { return _x * v._x + _y * v._y + _z * v._z; }
 
     /**
      * @brief 计算向量的叉积（外积）
      * @param v 另一个向量
      * @return 叉积结果向量
      */
-    Vector3 Cross(const Vector3 &v) const
+    Vector3 Cross(const Vector3& v) const
     {
-        return Vector3(
-            _y * v._z - _z * v._y,
-            _z * v._x - _x * v._z,
-            _x * v._y - _y * v._x
-            );
+        return Vector3(_y * v._z - _z * v._y, _z * v._x - _x * v._z, _x * v._y - _y * v._x);
     }
 
     /**
      * @brief 计算向量长度的平方
      * @return 向量长度的平方
      */
-    T LengthSquared() const
-    {
-        return _x * _x + _y * _y + _z * _z;
-    }
+    T LengthSquared() const { return _x * _x + _y * _y + _z * _z; }
 
     /**
      * @brief 计算向量的长度（模）
      * @return 向量的长度
      */
-    T Length() const
-    {
-        return std::sqrt(LengthSquared());
-    }
+    T Length() const { return std::sqrt(LengthSquared()); }
 
     /**
      * @brief 返回归一化后的新向量（单位向量）
@@ -707,7 +621,7 @@ public:
      * @brief 将当前向量归一化（转换为单位向量）
      * @return 当前向量的引用，如果长度为0则不做修改
      */
-    Vector3 &Normalize()
+    Vector3& Normalize()
     {
         T len = Length();
         if (std::abs(len) < std::numeric_limits<T>::epsilon())
@@ -724,10 +638,7 @@ public:
      * @brief 计算向量的绝对值（各分量取绝对值）
      * @return 各分量取绝对值后的新向量
      */
-    Vector3 Abs() const
-    {
-        return Vector3(std::abs(_x), std::abs(_y), std::abs(_z));
-    }
+    Vector3 Abs() const { return Vector3(std::abs(_x), std::abs(_y), std::abs(_z)); }
 
     T X() const { return _x; }
     T Y() const { return _y; }
@@ -736,10 +647,7 @@ public:
     /**
      * @brief 输出向量信息
      */
-    void Print()
-    {
-        std::cout << "x: " << _x << ", y: " << _y << ", z: " << _z << std::endl;
-    }
+    void Print() { std::cout << "x: " << _x << ", y: " << _y << ", z: " << _z << std::endl; }
 
     /**
      * @brief 输出向量信息到字符串
@@ -752,7 +660,7 @@ public:
         return ss.str();
     }
 
-private:
+  private:
     T _x, _y, _z;
 };
 
@@ -760,16 +668,13 @@ private:
  * @brief 四维向量类模板
  * @tparam T 向量分量的数据类型（如int, float, double等）
  */
-template <class T>
-class Vector4
+template <class T> class Vector4
 {
-public:
+  public:
     /**
      * @brief 默认构造函数，初始化为零向量
      */
-    Vector4() : _x(0), _y(0), _z(0), _w(0)
-    {
-    }
+    Vector4() : _x(0), _y(0), _z(0), _w(0) {}
 
     /**
      * @brief 参数化构造函数
@@ -778,40 +683,32 @@ public:
      * @param z z分量
      * @param w w分量
      */
-    Vector4(T x, T y, T z, T w) : _x(x), _y(y), _z(z), _w(w)
-    {
-    }
+    Vector4(T x, T y, T z, T w) : _x(x), _y(y), _z(z), _w(w) {}
 
     /**
      * @brief 拷贝构造函数
      * @param v 要拷贝的向量
      */
-    Vector4(const Vector4 &v) : _x(v._x), _y(v._y), _z(v._z), _w(v._w)
-    {
-    }
+    Vector4(const Vector4& v) : _x(v._x), _y(v._y), _z(v._z), _w(v._w) {}
 
     /**
      * @brief 从Vector2构造，z和w分量设为0
      * @param v 二维向量
      */
-    Vector4(const Vector2<T> &v) : _x(v[0]), _y(v[1]), _z(0), _w(0)
-    {
-    }
+    Vector4(const Vector2<T>& v) : _x(v[0]), _y(v[1]), _z(0), _w(0) {}
 
     /**
      * @brief 从Vector3构造，w分量设为0
      * @param v 三维向量
      */
-    Vector4(const Vector3<T> &v) : _x(v[0]), _y(v[1]), _z(v[2]), _w(0)
-    {
-    }
+    Vector4(const Vector3<T>& v) : _x(v[0]), _y(v[1]), _z(v[2]), _w(0) {}
 
     /**
      * @brief 赋值运算符
      * @param v 要赋值的向量
      * @return 当前向量的引用
      */
-    Vector4 &operator=(const Vector4 &v)
+    Vector4& operator=(const Vector4& v)
     {
         if (this == &v)
             return *this;
@@ -828,7 +725,7 @@ public:
      * @param v 二维向量
      * @return 当前向量的引用
      */
-    Vector4 &operator=(const Vector2<T> &v)
+    Vector4& operator=(const Vector2<T>& v)
     {
         _x = v[0];
         _y = v[1];
@@ -842,7 +739,7 @@ public:
      * @param v 三维向量
      * @return 当前向量的引用
      */
-    Vector4 &operator=(const Vector3<T> &v)
+    Vector4& operator=(const Vector3<T>& v)
     {
         _x = v[0];
         _y = v[1];
@@ -878,7 +775,7 @@ public:
      * @param index 索引（0=x, 1=y, 2=z, 3=w）
      * @return 对应分量的引用
      */
-    T &operator[](const int index)
+    T& operator[](const int index)
     {
         switch (index)
         {
@@ -900,17 +797,14 @@ public:
      * @param v 要相加的向量
      * @return 相加后的新向量
      */
-    Vector4 operator+(const Vector4 &v) const
-    {
-        return Vector4(_x + v._x, _y + v._y, _z + v._z, _w + v._w);
-    }
+    Vector4 operator+(const Vector4& v) const { return Vector4(_x + v._x, _y + v._y, _z + v._z, _w + v._w); }
 
     /**
      * @brief 向量加法赋值
      * @param v 要相加的向量
      * @return 当前向量的引用
      */
-    Vector4 &operator+=(const Vector4 &v)
+    Vector4& operator+=(const Vector4& v)
     {
         _x += v._x;
         _y += v._y;
@@ -924,17 +818,14 @@ public:
      * @param s 标量值
      * @return 相乘后的新向量
      */
-    Vector4 operator*(const T s) const
-    {
-        return Vector4(_x * s, _y * s, _z * s, _w * s);
-    }
+    Vector4 operator*(const T s) const { return Vector4(_x * s, _y * s, _z * s, _w * s); }
 
     /**
      * @brief 标量乘法赋值
      * @param s 标量值
      * @return 当前向量的引用
      */
-    Vector4 &operator*=(const T s)
+    Vector4& operator*=(const T s)
     {
         _x *= s;
         _y *= s;
@@ -962,7 +853,7 @@ public:
      * @param s 标量值
      * @return 当前向量的引用，如果s接近0则不做修改
      */
-    Vector4 &operator/=(const T s)
+    Vector4& operator/=(const T s)
     {
         if (std::abs(s) < std::numeric_limits<T>::epsilon())
         {
@@ -979,27 +870,21 @@ public:
      * @brief 向量取反（负号运算符）
      * @return 取反后的新向量
      */
-    Vector4 operator-()
-    {
-        return Vector4(-_x, -_y, -_z, -_w);
-    }
+    Vector4 operator-() { return Vector4(-_x, -_y, -_z, -_w); }
 
     /**
      * @brief 向量减法
      * @param v 要相减的向量
      * @return 相减后的新向量
      */
-    Vector4 operator-(const Vector4 &v) const
-    {
-        return Vector4(_x - v._x, _y - v._y, _z - v._z, _w - v._w);
-    }
+    Vector4 operator-(const Vector4& v) const { return Vector4(_x - v._x, _y - v._y, _z - v._z, _w - v._w); }
 
     /**
      * @brief 向量减法赋值
      * @param v 要相减的向量
      * @return 当前向量的引用
      */
-    Vector4 &operator-=(const Vector4 &v)
+    Vector4& operator-=(const Vector4& v)
     {
         _x -= v._x;
         _y -= v._y;
@@ -1013,17 +898,14 @@ public:
      * @param v 要相乘的向量
      * @return 逐元素相乘后的新向量
      */
-    Vector4 operator*(const Vector4 &v) const
-    {
-        return Vector4(_x * v._x, _y * v._y, _z * v._z, _w * v._w);
-    }
+    Vector4 operator*(const Vector4& v) const { return Vector4(_x * v._x, _y * v._y, _z * v._z, _w * v._w); }
 
     /**
      * @brief 向量逐元素乘法赋值
      * @param v 要相乘的向量
      * @return 当前向量的引用
      */
-    Vector4 &operator*=(const Vector4 &v)
+    Vector4& operator*=(const Vector4& v)
     {
         _x *= v._x;
         _y *= v._y;
@@ -1037,28 +919,19 @@ public:
      * @param v 另一个向量
      * @return 点积结果
      */
-    T Dot(const Vector4 &v) const
-    {
-        return _x * v._x + _y * v._y + _z * v._z + _w * v._w;
-    }
+    T Dot(const Vector4& v) const { return _x * v._x + _y * v._y + _z * v._z + _w * v._w; }
 
     /**
      * @brief 计算向量长度的平方
      * @return 向量长度的平方
      */
-    T LengthSquared() const
-    {
-        return _x * _x + _y * _y + _z * _z + _w * _w;
-    }
+    T LengthSquared() const { return _x * _x + _y * _y + _z * _z + _w * _w; }
 
     /**
      * @brief 计算向量的长度（模）
      * @return 向量的长度
      */
-    T Length() const
-    {
-        return std::sqrt(LengthSquared());
-    }
+    T Length() const { return std::sqrt(LengthSquared()); }
 
     /**
      * @brief 返回归一化后的新向量（单位向量）
@@ -1078,7 +951,7 @@ public:
      * @brief 将当前向量归一化（转换为单位向量）
      * @return 当前向量的引用，如果长度为0则不做修改
      */
-    Vector4 &Normalize()
+    Vector4& Normalize()
     {
         T len = Length();
         if (std::abs(len) < std::numeric_limits<T>::epsilon())
@@ -1096,10 +969,7 @@ public:
      * @brief 计算向量的绝对值（各分量取绝对值）
      * @return 各分量取绝对值后的新向量
      */
-    Vector4 Abs() const
-    {
-        return Vector4(std::abs(_x), std::abs(_y), std::abs(_z), std::abs(_w));
-    }
+    Vector4 Abs() const { return Vector4(std::abs(_x), std::abs(_y), std::abs(_z), std::abs(_w)); }
 
     T X() const { return _x; }
     T Y() const { return _y; }
@@ -1109,11 +979,7 @@ public:
     /**
      * @brief 输出向量信息
      */
-    void Print()
-    {
-        std::cout << "x: " << _x << ", y: " << _y << ", z: " << _z << ", w: " <<
-            _w << std::endl;
-    }
+    void Print() { std::cout << "x: " << _x << ", y: " << _y << ", z: " << _z << ", w: " << _w << std::endl; }
 
     /**
      * @brief 输出向量信息到字符串
@@ -1126,7 +992,7 @@ public:
         return ss.str();
     }
 
-private:
+  private:
     T _x, _y, _z, _w;
 };
 
@@ -1139,11 +1005,7 @@ private:
  * @param v 向量
  * @return 相乘后的新向量
  */
-template <class T>
-Vector2<T> operator*(const T s, const Vector2<T> &v)
-{
-    return v * s;
-}
+template <class T> Vector2<T> operator*(const T s, const Vector2<T>& v) { return v * s; }
 
 /**
  * @brief 标量与三维向量相乘（标量在左）
@@ -1152,11 +1014,7 @@ Vector2<T> operator*(const T s, const Vector2<T> &v)
  * @param v 向量
  * @return 相乘后的新向量
  */
-template <class T>
-Vector3<T> operator*(const T s, const Vector3<T> &v)
-{
-    return v * s;
-}
+template <class T> Vector3<T> operator*(const T s, const Vector3<T>& v) { return v * s; }
 
 /**
  * @brief 标量与四维向量相乘（标量在左）
@@ -1165,12 +1023,8 @@ Vector3<T> operator*(const T s, const Vector3<T> &v)
  * @param v 向量
  * @return 相乘后的新向量
  */
-template <class T>
-Vector4<T> operator*(const T s, const Vector4<T> &v)
-{
-    return v * s;
-}
+template <class T> Vector4<T> operator*(const T s, const Vector4<T>& v) { return v * s; }
 
-} // math
+} // namespace math
 
-#endif //VECTOR_H
+#endif // VECTOR_H

@@ -20,23 +20,22 @@ namespace pri
  */
 struct BarycentricCoord
 {
-    std::vector<float> weights;  // 各顶点的权重
+    std::vector<float> weights; // 各顶点的权重
 
     BarycentricCoord() = default;
-    
-    explicit BarycentricCoord(size_t vertex_count) 
-        : weights(vertex_count, 0.0f) {}
-    
-    BarycentricCoord(std::initializer_list<float> init) 
-        : weights(init) {}
+
+    explicit BarycentricCoord(size_t vertex_count) : weights(vertex_count, 0.0f) {}
+
+    BarycentricCoord(std::initializer_list<float> init) : weights(init) {}
 
     /**
      * @brief 检查重心坐标是否有效（权重之和应该约等于1）
      */
-    [[nodiscard]] bool IsValid() const 
+    [[nodiscard]] bool IsValid() const
     {
         float sum = 0.0f;
-        for (float w : weights) {
+        for (float w : weights)
+        {
             sum += w;
         }
         return sum > 0.99f && sum < 1.01f;
@@ -66,7 +65,7 @@ class IPrimitive
      * @brief 绘制图元到指定的像素缓冲区
      * @param buffer 像素缓冲区
      */
-    virtual void Draw(PixelsBuffer &buffer) const = 0;
+    virtual void Draw(PixelsBuffer& buffer) const = 0;
 
     /**
      * @brief 克隆图元（用于复制）
@@ -78,21 +77,15 @@ class IPrimitive
      * @brief 设置纹理（基类提供默认实现）
      * @param texture 纹理对象
      */
-    virtual void SetTexture(std::shared_ptr<texture::Texture> texture)
-    {
-        _texture = texture;
-    }
+    virtual void SetTexture(std::shared_ptr<texture::Texture> texture) { _texture = texture; }
 
     /**
      * @brief 获取纹理
      */
-    [[nodiscard]] std::shared_ptr<texture::Texture> GetTexture() const 
-    {
-        return _texture;
-    }
+    [[nodiscard]] std::shared_ptr<texture::Texture> GetTexture() const { return _texture; }
 
   protected:
-    std::shared_ptr<texture::Texture> _texture;  // 纹理（所有图元共享）
+    std::shared_ptr<texture::Texture> _texture; // 纹理（所有图元共享）
 };
 
 } // namespace pri

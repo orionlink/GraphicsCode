@@ -5,14 +5,15 @@
 #ifndef IMAGE_H
 #define IMAGE_H
 
-#include <string>
-#include <vector>
-#include <cstdint>
-#include <memory>
 #include "color.h"
 #include "point.h"
+#include <cstdint>
+#include <memory>
+#include <string>
+#include <vector>
 
-namespace image {
+namespace image
+{
 
 /**
  * @brief 图像类 - 纯粹的图像数据容器
@@ -21,8 +22,9 @@ namespace image {
  *   2. 提供像素访问接口
  *   3. 从文件/内存加载图像
  */
-class Image {
-public:
+class Image
+{
+  public:
     /**
      * @brief 从文件加载图像
      * @param file_path 图片文件路径
@@ -50,29 +52,20 @@ public:
 
     /**
      * @brief 将图片移动到屏幕的某个位置
-     * 
+     *
      * @param position 位置
      */
-    void Move(const math::Point2i& position)
-    {
-        _start_position = position;
-    }
+    void Move(const math::Point2i& position) { _start_position = position; }
 
     /**
      * @brief 将图片移动到屏幕的某个位置
-     * 
+     *
      * @param x 横坐标
      * @param y 纵坐标
      */
-    void Move(const int x, const int y)
-    {
-        _start_position = math::Point2i(x, y);
-    }
+    void Move(const int x, const int y) { _start_position = math::Point2i(x, y); }
 
-    math::Point2i Position() const
-    {
-        return _start_position;
-    }
+    math::Point2i Position() const { return _start_position; }
 
     /**
      * @brief 获取指定位置的像素颜色
@@ -120,7 +113,7 @@ public:
      */
     [[nodiscard]] std::vector<uint32_t>& Pixels() { return _pixels; }
 
-private:
+  private:
     std::vector<uint32_t> _pixels;
     int _width;
     int _height;
