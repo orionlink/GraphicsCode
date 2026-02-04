@@ -45,8 +45,8 @@ Color Texture::Sample(float u, float v) const
         return Color::Transparent();
     }
 
-    u = ApplyWrap(u);
-    v = ApplyWrap(v);
+    u = ApplyWrap(u + _uv_offset_u);
+    v = ApplyWrap(v + _uv_offset_v);
 
     if (_sample_mode == SampleMode::Bilinear)
     {

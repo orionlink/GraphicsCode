@@ -133,10 +133,35 @@ class Texture
         return _image && _image->IsValid();
     }
 
+    /**
+     * @brief 设置「每帧」固定 UV 步进
+     * @param du_per_frame 每帧 U 方向增量（如 0.01f）
+     * @param dv_per_frame 每帧 V 方向增量
+     */
+    void SetUVScrollSpeedPerFrame(float du_per_frame, float dv_per_frame)
+    {
+        _uv_per_frame_u = du_per_frame;
+        _uv_per_frame_v = dv_per_frame;
+    }
+
+    /**
+     * @brief 每帧固定步进
+     */
+    void AdvanceUVOffsetOneFrame()
+    {
+        _uv_offset_u += _uv_per_frame_u;
+        _uv_offset_v += _uv_per_frame_v;
+    }
+
   private:
     std::shared_ptr<image::Image> _image; // 持有图像数据（可共享）
     SampleMode _sample_mode = SampleMode::Nearest;
     WrapMode _wrap_mode = WrapMode::Clamp;
+
+    float _uv_offset_u = 0.0f;
+    float _uv_offset_v = 0.0f;
+    float _uv_per_frame_u = 0.0f;
+    float _uv_per_frame_v = 0.0f;
 
     /**
      * @brief 应用环绕模式处理坐标

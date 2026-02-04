@@ -52,6 +52,13 @@ add_executable(sdl2_graphics
         src/image/image.h
         src/texture/texture.cpp
         src/texture/texture.h
+        src/animation/animation.h
+        src/animation/animator.cpp
+        src/animation/animator.h
+        src/animation/uv_scroll_animation.cpp
+        src/animation/uv_scroll_animation.h
+        src/sprite/sprite.cpp
+        src/sprite/sprite.h
 )
 # Windows 需要链接 SDL2main 来提供正确的入口点
 if(WIN32)

@@ -1,10 +1,14 @@
+#include "animation/animator.h"
+#include "animation/uv_scroll_animation.h"
 #include "bounding_box.h"
 #include "color.h"
 #include "image.h"
 #include "math/vector.h"
 #include "primitive/line_primitive.h"
 #include "sdl2_window.h"
+#include "sprite/sprite.h"
 #include "triangle_primitive.h"
+
 
 #include <cstdlib>
 #include <filesystem>
@@ -21,7 +25,7 @@ using namespace std;
 //    = π/180 弧度
 #define DEG2RAD(deg) ((deg) * M_PI / 180.0)
 
-void TestRenderer(GraphicsRenderer& renderer);
+void TestRenderer(GraphicsRenderer& renderer, Sdl2Window* window = nullptr);
 void TestVector();
 
 const int g_width = 800;
@@ -36,7 +40,7 @@ int main(int argc, char* argv[])
     auto& renderer = window.graphicsRenderer();
 
 #if 1 // 1. 红色方块 (左上角) - 应该显示红色
-    TestRenderer(renderer);
+    TestRenderer(renderer, &window);
 #endif
 
 #if 0
@@ -195,7 +199,7 @@ void BresenhamLine(const pri::PointPrimitive point1, const pri::PointPrimitive p
     }
 }
 
-void TestRenderer(GraphicsRenderer& renderer)
+void TestRenderer(GraphicsRenderer& renderer, Sdl2Window* window)
 {
 #if 0
     // 简单直线算法
@@ -256,6 +260,8 @@ void TestRenderer(GraphicsRenderer& renderer)
     }
 #endif
 
+#if 0
+
     // Bresenham 直线算法
 
     // x1 < x2 y1 < y2, k > 1 (红色到黄色)
@@ -306,6 +312,10 @@ void TestRenderer(GraphicsRenderer& renderer)
     renderer.DrawAntialiasedLine(550, 170, 650, 270, Color::Green());
     renderer.DrawAntialiasedLine(550, 290, 650, 390, Color::Blue());
 
+#endif
+
+#if 0 // 三角形加载纹理和重心插值颜色变化测试
+
     math::Point2i p1{400, 500};
     math::Point2i p2{800, 500};
     math::Point2i p3{600, 10};
@@ -316,7 +326,7 @@ void TestRenderer(GraphicsRenderer& renderer)
     pri::TrianglePrimitive triangle{pp1, pp2, pp3}; // 颜色插值
     // 获取当前工作目录
     std::string current_dir = std::filesystem::current_path().string();
-    // 资源路径跨平台处理
+// 资源路径跨平台处理
 #if defined(_WIN32) || defined(__WIN32__)
     std::string image_path = current_dir + "\\resource\\images\\goku.jpg";
 #else
@@ -335,10 +345,7 @@ void TestRenderer(GraphicsRenderer& renderer)
 
     renderer.Draw(triangle);
 
-    int offset_x = 0;
-    int offset_y = 0;
-    pri::TrianglePrimitive triangle2{
-        {0 + offset_x, 500 + offset_y}, {400 + offset_x, 500 + offset_y}, {200 + offset_x, 10 + offset_y}};
+    pri::TrianglePrimitive triangle2{{0, 500}, {400, 500}, {200, 10}};
 
     texture->SetSampleMode(texture::SampleMode::Bilinear);
     // triangle2.SetTexture(texture, math::Point2f(0.0f, 1.0f), // p1 -> 左下角
@@ -353,4 +360,65 @@ void TestRenderer(GraphicsRenderer& renderer)
     renderer.Draw(triangle2);
 
     // renderer.DrawImage(image);
+
+#endif
+
+#if 1 // 跑马灯效果测试（UV 按速度增加）
+    pri::TrianglePrimitive triangle_right{{600, 500}, {600, 10}, {200, 10}};
+    pri::TrianglePrimitive triangle_left{{200, 500}, {600, 500}, {200, 10}};
+
+    std::string current_dir = std::filesystem::current_path().string();
+#if defined(_WIN32) || defined(__WIN32__)
+    std::string image_path = current_dir + "\\resource\\images\\goku.jpg";
+#else
+    std::string image_path = current_dir + "/resource/images/goku.jpg";
+#endif
+    auto image = std::make_shared<image::Image>(image_path);
+    auto texture = std::make_shared<texture::Texture>(image);
+    texture->SetSampleMode(texture::SampleMode::Nearest);
+    texture->SetWrapMode(texture::WrapMode::Mirror);
+
+    // // UV 滚动速度：每秒移动 1.0（一整幅纹理/秒）
+    // texture->SetUVScrollSpeedPerFrame(0.05f, 0.0f);
+
+    // triangle_right.SetTexture(texture, math::Point2f(1.0f, 1.0f), math::Point2f(1.0f, 0.0f), math::Point2f(0.0f,
+    // 0.0f)); triangle_left.SetTexture(texture, math::Point2f(0.0f, 1.0f), math::Point2f(1.0f, 1.0f),
+    // math::Point2f(0.0f, 0.0f));
+
+    // if (window)
+    // {
+    //     renderer.AddPrimitive(triangle_left.Clone());
+    //     renderer.AddPrimitive(triangle_right.Clone());
+    //     renderer.DrawAllPrimitives();
+    //     window->SetFrameCallback(
+    //         [texture](GraphicsRenderer& r, float dt)
+    //         {
+    //             texture->AdvanceUVOffsetOneFrame();
+    //             // r.Clear(Color(0, 0, 0, 255));
+    //             r.DrawAllPrimitives();
+    //         });
+    // }
+    // else
+    // {
+    //     renderer.Draw(triangle_left);
+    //     renderer.Draw(triangle_right);
+    // }
+
+    auto sprite_rect = std::make_shared<sprite::Sprite>(renderer, texture);
+    sprite_rect->SetRect(100, 100, 400, 400);
+
+    auto uv_scroll_anima = sprite_rect->CreateUVScrollAnimation();
+    dynamic_pointer_cast<anim::UVScrollAnimation>(uv_scroll_anima)->SetScrollSpeed(0.3f, 0.0f);
+    uv_scroll_anima->SetSpeed(2.0);
+    auto animator = std::make_shared<anim::Animator>();
+    animator->Add(uv_scroll_anima);
+
+    window->SetFrameCallback(
+        [texture, animator, sprite_rect](GraphicsRenderer& r, float dt)
+        {
+            r.Clear();
+            animator->Update(dt);
+            sprite_rect->Draw();
+        });
+#endif
 }

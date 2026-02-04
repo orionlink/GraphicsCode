@@ -5,6 +5,7 @@
 #include "sdl2_window.h"
 
 #include <iostream>
+#include <chrono>
 
 Sdl2Window::Sdl2Window(const std::string& title, const int32_t width, const int32_t height)
     : _width(width), _height(height), _quit(false)
@@ -60,6 +61,9 @@ void Sdl2Window::EventLoop()
 {
     SDL_Event e;
 
+    Uint64 t_prev =
+        std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
+
     while (!_quit.load())
     {
         // 处理事件
@@ -69,6 +73,14 @@ void Sdl2Window::EventLoop()
             {
                 _quit.store(true);
             }
+        }
+
+        if (_on_frame)
+        {
+            Uint64 t_now = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
+            float dt = static_cast<float>(t_now - t_prev);
+            t_prev = t_now;
+            _on_frame(*_graphics_renderer, dt);
         }
 
         Draw();
